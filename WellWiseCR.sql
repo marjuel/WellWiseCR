@@ -21,3 +21,4 @@ create table [Usuario](
 	rol varchar(150) not null,
 	estado varchar(150) not null,
 	primary key (nombreUsuario))
+go
