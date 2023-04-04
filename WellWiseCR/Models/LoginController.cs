@@ -4,7 +4,8 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using WellWiseCR.Models;
-
+using WellWiseCR.Datos;
+using System.Data.SqlClient;
 
 namespace WellWiseCR.Controllers
 {
@@ -21,12 +22,53 @@ namespace WellWiseCR.Controllers
             return View();
         }
 
+        /*public static Usuario ConsultarUsuario(string nombreUsuario)
+        {
+            Conexion con = new Conexion();
+            string sql = "select * from [Usuario] where nombreUsuario = '" + nombreUsuario + "';";
+            SqlCommand comando = new SqlCommand(sql, con.Conectar());
+            SqlDataReader dr = comando.ExecuteReader();
+            Usuario u = new Usuario();
+
+            if (dr.Read())
+            {
+                u.NombreUsuario = dr["nombreUsuario"].ToString();
+                u.Contrasena = dr["contrasena"].ToString();
+                u.CorreoElectronico = dr["correoElectronico"].ToString();
+                u.NombreCompleto = dr["nombreCompleto"].ToString();
+                u.NumeroTelefono = dr["numeroTelefono"].ToString();
+                con.Desconectar();
+                return u;
+            }
+            else
+            {
+                con.Desconectar();
+                return null;
+            }
+        }*/
+
         //Método post para el inicio de seseión
         [HttpPost]
         public async Task<IActionResult> IniciarSesion(Usuario usuario)
         {
-            //aqui debo poner SQLCommands para interactuar con la BD
-            if (usuario.NombreUsuario.Equals("marjueladmin") && usuario.Password.Equals("123"))
+            //Se crea una conexion con la BD y el parametro usuario (que almacena los datos digitados en frontend) se relaciona con su registro
+            Conexion con = new Conexion();
+            string sql = "select * from [Usuario] where nombreUsuario = '" + usuario.NombreUsuario + "';";
+            SqlCommand comando = new SqlCommand(sql, con.Conectar());
+
+            SqlDataReader dr = comando.ExecuteReader();
+            //Se crea un objeto Usuario llamado dbu (para almacenar los datos extraidos de la BD)
+            Usuario dbu = new Usuario();
+            if (dr.Read())
+            {
+                dbu.NombreUsuario = dr["nombreUsuario"].ToString().ToUpper();
+                dbu.Password = dr["password"].ToString();
+            }
+            con.Desconectar();
+
+
+            //Compara si los datos del usuario digitado son iguales a los que hay en BD
+            if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && usuario.Password.Equals(dbu.Password))
             {
                 List<Claim> claims = new List<Claim>()
                 {
@@ -40,7 +82,7 @@ namespace WellWiseCR.Controllers
                 AuthenticationProperties properties = new AuthenticationProperties()
                 {
                     AllowRefresh = true,
-                    IsPersistent = true
+                    IsPersistent = false
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
@@ -48,10 +90,17 @@ namespace WellWiseCR.Controllers
                 //Si la autenticación es correcta permite dirigirse a Home
                 return RedirectToAction("Index", "Home");
             }
+            //En caso de que la contrasena no sea correcta
+            else if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && !usuario.Password.Equals(dbu.Password)) {
+                ViewData["ValidateMessage"] = "El usuario o la contraseña no son correctos.";
+                return View();
+            }
 
-            ViewData["ValidateMessage"] = "Usuario no encontrado.";
+            //En caso de que el usuario no exista
+            ViewData["ValidateMessage"] = "El usuario digitado no existe en el sitema.";
             return View();
-        }
+        }//Fin del metodo IniciarSesion post
+
     }//Fin de la clase LoginController
 }//Fin del name space
 
