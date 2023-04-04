@@ -11,6 +11,10 @@ namespace WellWiseCR.Controllers
 {
     public class LoginController : Controller
     {
+        public LoginController() {
+            ViewData["ValidateMessage"] = "";
+        }
+
         public IActionResult IniciarSesion()
         {
             ClaimsPrincipal claimUser = HttpContext.User;
@@ -22,35 +26,16 @@ namespace WellWiseCR.Controllers
             return View();
         }
 
-        /*public static Usuario ConsultarUsuario(string nombreUsuario)
-        {
-            Conexion con = new Conexion();
-            string sql = "select * from [Usuario] where nombreUsuario = '" + nombreUsuario + "';";
-            SqlCommand comando = new SqlCommand(sql, con.Conectar());
-            SqlDataReader dr = comando.ExecuteReader();
-            Usuario u = new Usuario();
-
-            if (dr.Read())
-            {
-                u.NombreUsuario = dr["nombreUsuario"].ToString();
-                u.Contrasena = dr["contrasena"].ToString();
-                u.CorreoElectronico = dr["correoElectronico"].ToString();
-                u.NombreCompleto = dr["nombreCompleto"].ToString();
-                u.NumeroTelefono = dr["numeroTelefono"].ToString();
-                con.Desconectar();
-                return u;
-            }
-            else
-            {
-                con.Desconectar();
-                return null;
-            }
-        }*/
-
         //Método post para el inicio de seseión
         [HttpPost]
         public async Task<IActionResult> IniciarSesion(Usuario usuario)
         {
+            //En caso de que los campos de texto se encuentren vacios
+            if (usuario.NombreUsuario == null || usuario.Password == null) {
+                ViewData["ValidateMessage"] = "No se permiten campos vacíos.";
+                return View();
+            }
+ 
             //Se crea una conexion con la BD y el parametro usuario (que almacena los datos digitados en frontend) se relaciona con su registro
             Conexion con = new Conexion();
             string sql = "select * from [Usuario] where nombreUsuario = '" + usuario.NombreUsuario + "';";
@@ -96,7 +81,7 @@ namespace WellWiseCR.Controllers
                 return View();
             }
 
-            //En caso de que el usuario no exista
+                //En caso de que el usuario no exista
             ViewData["ValidateMessage"] = "El usuario digitado no existe en el sitema.";
             return View();
         }//Fin del metodo IniciarSesion post

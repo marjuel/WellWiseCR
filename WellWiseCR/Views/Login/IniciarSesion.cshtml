@@ -7,25 +7,53 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>IniciarSesion</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Iniciar sesión - WellWiseCR</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WellWiseCR.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body class="bg-white d-flex justify-content-center align-items-center vh-100">
     
-
-    <form asp-controller="Login" asp-action="IniciarSesion" method="post">
-        <h1>HOL4 MUND0</h1>
-        <input type="text" placeholder="Nombre de usuario" asp-for="NombreUsuario" />
-        <input type="password" placeholder="Contraseña" asp-for="Password" />
-
-        <button type="submit">Ingresar</button>
-
-        @if(ViewData["ValidateMessage"] != null)
-        {
+    <div class="bg-light bg-gradient p-5 rounded-1" style="width: 25%">
+        <form class="justify-content-center" asp-controller="Login" asp-action="IniciarSesion" method="post">
+            <h1 class="text-center">WellWiseCR</h1>
             <br />
             <br />
-            <label>@ViewData["ValidateMessage"]</label>
-        }
-    </form>
+            <h3 class="text-center">Iniciar sesión</h3>
+
+            <div class="text-center">
+                <div>
+                    <input type="text" placeholder="Nombre de usuario" asp-for="NombreUsuario" />
+                </div>
+
+                <div>
+                    <br />
+                    <input type="password" placeholder="Contraseña" asp-for="Password" />
+                </div>
+
+                <div>
+                    <br />
+                    <button class="btn btn-primary" type="submit">Ingresar</button>
+                </div>
+            </div>
+
+            @if(ViewData["ValidateMessage"] != null)
+            {
+                <p class="text-center" style="color: red">@ViewData["ValidateMessage"]</p>
+            }else{
+                <p></p>
+            }
+
+            <div class="text-center">
+                <br />
+                <br />
+                <p>¿Olvidó su contraseña?</p>
+                <button class="btn btn-secondary" type="submit">Reestablecer contraseña</button>
+            </div>
+
+        </form>
+    </div>
 </body>
 </html>
