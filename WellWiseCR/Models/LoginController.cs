@@ -40,7 +40,7 @@ namespace WellWiseCR.Controllers
                 AuthenticationProperties properties = new AuthenticationProperties()
                 {
                     AllowRefresh = true,
-                    IsPersistent = false
+                    IsPersistent = true
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);

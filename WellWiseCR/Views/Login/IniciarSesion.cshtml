@@ -11,6 +11,21 @@
     <title>IniciarSesion</title>
 </head>
 <body>
-    <h1>HOL4 MUND0</h1>
+    
+
+    <form asp-controller="Login" asp-action="IniciarSesion" method="post">
+        <h1>HOL4 MUND0</h1>
+        <input type="text" placeholder="Nombre de usuario" asp-for="NombreUsuario" />
+        <input type="password" placeholder="Contraseña" asp-for="Password" />
+
+        <button type="submit">Ingresar</button>
+
+        @if(ViewData["ValidateMessage"] != null)
+        {
+            <br />
+            <br />
+            <label>@ViewData["ValidateMessage"]</label>
+        }
+    </form>
 </body>
 </html>

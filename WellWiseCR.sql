@@ -22,3 +22,9 @@ create table [Usuario](
 	estado varchar(150) not null,
 	primary key (nombreUsuario))
 go
+
+---------------------------------------------------------------------------
+insert into [Usuario]
+values ('stylesadmin','123','123','stylesadmin@gmail.com','Administrador','Activo')
+
+select * from [Usuario]
