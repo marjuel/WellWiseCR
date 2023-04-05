@@ -20,6 +20,10 @@ namespace WellWiseCR.Models
 
         [Required]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
+        public string NombreCompleto { get; set; }
+
+        [Required]
+        [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string Email { get; set; }
 
         [Required]
