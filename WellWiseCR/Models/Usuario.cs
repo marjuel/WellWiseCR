@@ -5,6 +5,7 @@ namespace WellWiseCR.Models
     public class Usuario
     {
         [Required]
+        [Key]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string NombreUsuario { get; set; }
 

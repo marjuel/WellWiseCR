@@ -1,0 +1,66 @@
+﻿@model IEnumerable<WellWiseCR.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nombre de usuario
+            </th>
+            <th>
+                Contraseña
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Correo electrónico
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Estado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NombreUsuario">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NombreUsuario">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NombreUsuario">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
