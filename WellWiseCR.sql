@@ -39,3 +39,17 @@ values ('nanaempleado','987','987', 'Dayanara Campos','dayanaracampos134@gmail.c
 
 insert into [Usuario]
 values ('fannyempleado','456','456', 'Fanny Murillo','fannymurillo34@yahoo.com','Empleado','Activo')
+
+--Trigger para transformar los nombres de usuario
+--que se registren en mayuscula
+CREATE TRIGGER ToUpperCase
+        ON [Usuario]
+        AFTER INSERT, UPDATE
+AS
+BEGIN
+
+    UPDATE  [Usuario]
+    SET     NombreUsuario = UPPER(NombreUsuario)
+    WHERE   NombreUsuario IN (SELECT NombreUsuario FROM inserted)
+
+END

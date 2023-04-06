@@ -169,7 +169,7 @@ namespace WellWiseCR.Controllers
             //En caso de que los campos de texto se encuentren vacios
             if (usuario.Email == null)
             {
-                ViewData["ValidateMessage2"] = "Por favor ingrese su correo electrónico para reestablecer su contraseña.";
+                ViewData["ValidateMessage2"] = "Ingrese su correo electrónico para reestablecer la contraseña.";
                 return View();
             }
 
@@ -203,14 +203,19 @@ namespace WellWiseCR.Controllers
 
             if (registrosAfectados == 1)
             {
+                ViewData["ValidateMessage2"] = "Contraseña reestablecida éxitosamente. Por favor revise su correo electrónico.";
                 this.EnviarMail(usuario);
                 return View();
             }
 
-            ViewData["ValidateMessage"] = "No se pudo reestablecer la contraseña.";
+            ViewData["ValidateMessage2"] = "No se pudo reestablecer la contraseña.";
             return View();
             
-        }//Fin del metodo IniciarSesion post
+        }//Fin del metodo ReestablecerPassword post
+
+        public string PruebaMensaje() {
+            return "Hola mundo";
+        }
 
     }//Fin de la clase LoginController
 }//Fin del name space

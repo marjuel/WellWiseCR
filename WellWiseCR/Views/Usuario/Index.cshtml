@@ -1,18 +1,21 @@
-﻿@model IEnumerable<WellWiseCR.Models.Usuario>
+﻿@using System.Text;
+@model IEnumerable<WellWiseCR.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "WellWiseCr - Usuarios";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+
+
+<h1>Usuarios</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-success" asp-action="Create">Registrar usuario</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="justify-content-center text-center">
             <th>
                 Nombre de usuario
             </th>
@@ -36,12 +39,22 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            const string caracteres = "AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789";
+            StringBuilder stringBuilder = new StringBuilder();
+            Random random = new Random();
+            for (int i = 0; i < 8; i++)
+            {
+                int indice = random.Next(caracteres.Length);
+                stringBuilder.Append(caracteres[indice]);
+            }
+            string passwordCifrado = stringBuilder + "";
+
+            <tr class="justify-content-center text-center">
             <td>
-                @Html.DisplayFor(modelItem => item.NombreUsuario)
+                    @Html.DisplayFor(modelItem => item.NombreUsuario)
             </td>
-            <td>
-                    @Html.DisplayFor(modelItem => item.Password)
+            <td class="text-muted">
+                Cifrada: @passwordCifrado
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreCompleto)
@@ -56,9 +69,17 @@
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NombreUsuario">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NombreUsuario">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NombreUsuario">Delete</a>
+                    
+                <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.NombreUsuario">Modificar</a>
+                <a class="btn btn-warning" asp-action="Details" asp-route-id="@item.NombreUsuario">Detalles</a>
+                @if (item.Rol.Equals("Administrador"))
+                {
+                        <button class="btn btn-secondary" title="Un administrador no puede ser desactivado.">Desactivar</button>
+                }
+                else
+                {
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NombreUsuario">Desactivar</a>
+                }
             </td>
         </tr>
 }
