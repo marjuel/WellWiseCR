@@ -31,11 +31,6 @@ namespace WellWiseCR.Controllers
             return View();
         }
 
-        public IActionResult ReestablecerPassword()
-        {
-                return RedirectToAction("IniciarSesion", "Login");
-        }
-
         //Método post para el inicio de seseión
         [HttpPost]
         public async Task<IActionResult> IniciarSesion(Usuario usuario)
@@ -174,7 +169,7 @@ namespace WellWiseCR.Controllers
             //En caso de que los campos de texto se encuentren vacios
             if (usuario.Email == null)
             {
-                ViewData["ValidateMessage2"] = "";
+                ViewData["ValidateMessage2"] = "Por favor ingrese su correo electrónico para reestablecer su contraseña.";
                 return View();
             }
 
@@ -208,8 +203,6 @@ namespace WellWiseCR.Controllers
 
             if (registrosAfectados == 1)
             {
-                
-                ViewData["ValidateMessage"] = "Contraseña reestablecida éxitosamente. Por favor revise su correo electrónico.";
                 this.EnviarMail(usuario);
                 return View();
             }

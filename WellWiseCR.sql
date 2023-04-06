@@ -36,3 +36,6 @@ values ('marjueladmin','987','987', 'Marcel Campos','marcel.fabri21@gmail.com','
 
 insert into [Usuario]
 values ('nanaempleado','987','987', 'Dayanara Campos','dayanaracampos134@gmail.com','Empleado','Activo')
+
+insert into [Usuario]
+values ('fannyempleado','456','456', 'Fanny Murillo','fannymurillo34@yahoo.com','Empleado','Activo')
