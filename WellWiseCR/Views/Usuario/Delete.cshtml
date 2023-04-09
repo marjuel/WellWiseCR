@@ -5,9 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Deactivar usuario</h1>
-<br />
-<h3>¿Está seguro de que desea desactivar este usuario?</h3>
+
+@if (Model.Estado.Equals("Activo"))
+{
+    <h1>Deactivar usuario</h1>
+    <br />
+    <h3>¿Está seguro de que desea desactivar este usuario?</h3>
+}
+else
+{
+    <h1>Reactivar usuario</h1>
+    <br />
+    <h3>¿Está seguro de que desea reactivar este usuario?</h3>
+}
+
 <div>
     <hr />
     <dl class="row">
@@ -43,9 +54,18 @@
         </dd>
     </dl>
     
+    @*<form asp-action="Delete">*@
     <form asp-action="Delete">
         <input type="hidden" asp-for="NombreUsuario" />
-        <input type="submit" value="Desactivar" class="btn btn-danger" />
+        @if (Model.Estado.Equals("Activo"))
+        {
+            <input type="submit" value="Desactivar" class="btn btn-danger" />
+        }
+        else
+        {
+            <input type="submit" value="Reactivar" class="btn btn-success" />
+        }
+        
     </form>
     <div>
         <br />

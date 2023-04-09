@@ -63,7 +63,7 @@ namespace WellWiseCR.Controllers
 
 
             //Compara si los datos del usuario digitado son iguales a los que hay en BD
-            if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && usuario.Password.Equals(dbu.Password))
+            if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && usuario.Password.Equals(dbu.Password) && dbu.Estado.Equals("Activo"))
             {
                 List<Claim> claims = new List<Claim>()
                 {
@@ -85,11 +85,18 @@ namespace WellWiseCR.Controllers
                 //Si la autenticación es correcta permite dirigirse a Home
                 return RedirectToAction("Index", "Home");
             }
+            else if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && usuario.Password.Equals(dbu.Password) && dbu.Estado.Equals("Inactivo"))
+            {
+                ViewData["ValidateMessage"] = "El usuario no puede ingresar ya que se encuentra desactivado. Contacte a un administrador para la reactivación.";
+                return View();
+            }
             //En caso de que la contrasena no sea correcta
-            else if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && !usuario.Password.Equals(dbu.Password)) {
+            else if (usuario.NombreUsuario.ToUpper().Equals(dbu.NombreUsuario) && !usuario.Password.Equals(dbu.Password))
+            {
                 ViewData["ValidateMessage"] = "El usuario o la contraseña no son correctos.";
                 return View();
             }
+            
 
                 //En caso de que el usuario no exista
             ViewData["ValidateMessage"] = "El usuario digitado no existe en el sitema.";

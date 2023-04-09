@@ -1,11 +1,6 @@
 ﻿@model WellWiseCR.Models.Usuario
 
-@{
-    ViewData["Title"] = "WellWiseCR - Modificar usuario";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>Modificar usuario</h1>
+<h1>Usuario</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -13,38 +8,33 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NombreUsuario" />
             <div class="form-group">
-                <label class="control-label">Nombre de usuario</label>
-                <input disabled asp-for="NombreUsuario" class="form-control" />
-                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Contraseña</label>
+                <label asp-for="Password" class="control-label">Contraseña</label>
                 <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Confirmación de contraseña</label>
+                <label asp-for="ConfirmacionPassword" class="control-label">Confirmación de contraseña</label>
                 <input asp-for="ConfirmacionPassword" class="form-control" />
                 <span asp-validation-for="ConfirmacionPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Nombre completo</label>
+                <label asp-for="NombreCompleto" class="control-label">Nombre completo</label>
                 <input asp-for="NombreCompleto" class="form-control" />
                 <span asp-validation-for="NombreCompleto" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Correo electrónico</label>
+                <label asp-for="Email" class="control-label">Correo electrónico</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Rol</label>
+                <label asp-for="Rol" class="control-label">Rol</label>
                 <input asp-for="Rol" class="form-control" />
                 <span asp-validation-for="Rol" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Estado</label>
-                <input asp-for="Estado" class="form-control" />
+                <label hidden asp-for="Estado" class="control-label"></label>
+                <input hidden asp-for="Estado" class="form-control" />
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">

@@ -44,7 +44,12 @@
             </div>
             <div class="form-group">
                 <label class="control-label">Estado</label>
-                <input asp-for="Estado" class="form-control" />
+                @*<input asp-for="Estado" class="form-control" />*@
+                <select asp-for="Estado" class="form-control" >
+                    <option disabled selected class="text-muted">Seleccione el estado</option>
+                    <option>Activo</option>
+                    <option>Inactivo</option>
+                </select>
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
