@@ -82,6 +82,9 @@ namespace WellWiseCR.Controllers
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
 
+                GlobalData.nombreGlobal = dbu.NombreUsuario;
+                GlobalData.rolGlobal = dbu.Rol;
+
                 //Si la autenticación es correcta permite dirigirse a Home
                 return RedirectToAction("Index", "Home");
             }
