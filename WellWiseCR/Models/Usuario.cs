@@ -12,7 +12,7 @@ namespace WellWiseCR.Models
 
         [Required(ErrorMessage = "El campo contraseña es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
-        [MinLength(8, ErrorMessage = "Debe ingresar un mínimo de 8 caracteres.")]
+        [MinLength(8, ErrorMessage = "Debe ingresar un mínimo de 8 caracteres, incluyendo al menos una mayúscula, una minúscula y un número.")]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "El campo confirmacion de contraseña es obligatorio.")]

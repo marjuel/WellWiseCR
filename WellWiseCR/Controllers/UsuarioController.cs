@@ -60,6 +60,16 @@ namespace WellWiseCR.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("NombreUsuario,Password,ConfirmacionPassword,NombreCompleto,Email,Rol,Estado")] Usuario usuario)
         {
+            ///
+            ///FALTA AGREGAR VALIDACION PARA QUE NO HAYAN DOS
+            ///USUARIOS CON EL MISMO NOMBRE DE USUARIO
+            ///EL MENSAJE DE ERROR ES
+            ///"Nombre de usuario no disponible."
+            ///
+            /// FALTA AGREGAR VALIDACION PARA QUE LA CONTRASEÑA
+            /// CONTENGA UNA MAYUSCULA, UNA MINUSCULA Y UN NUMERO
+            ///
+
             if (ModelState.IsValid)
             {
                 _context.Add(usuario);
