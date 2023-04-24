@@ -2,13 +2,8 @@
 using System.Diagnostics;
 using WellWiseCR.Models;
 
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
-
 namespace WellWiseCR.Controllers
 {
-    [Authorize]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -26,12 +21,6 @@ namespace WellWiseCR.Controllers
         public IActionResult Privacy()
         {
             return View();
-        }
-
-        public async Task<IActionResult> CerrarSesion()
-        {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return RedirectToAction("IniciarSesion","Login");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

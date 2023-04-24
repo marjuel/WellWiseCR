@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33502.453
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellWiseCR", "WellWiseCR.csproj", "{49843DBC-D4D7-4551-B270-D548CFF94501}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WellWiseCR", "WellWiseCR.csproj", "{3F70BEE6-13B2-433E-8F9C-916A29F585C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{49843DBC-D4D7-4551-B270-D548CFF94501}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49843DBC-D4D7-4551-B270-D548CFF94501}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49843DBC-D4D7-4551-B270-D548CFF94501}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49843DBC-D4D7-4551-B270-D548CFF94501}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3F70BEE6-13B2-433E-8F9C-916A29F585C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F70BEE6-13B2-433E-8F9C-916A29F585C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F70BEE6-13B2-433E-8F9C-916A29F585C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F70BEE6-13B2-433E-8F9C-916A29F585C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {C76E4C0E-3A0E-45B8-9076-A6EC619E00BE}
+		SolutionGuid = {EAE925F0-2A33-40E6-9129-71D56B0ECF30}
 	EndGlobalSection
 EndGlobal
