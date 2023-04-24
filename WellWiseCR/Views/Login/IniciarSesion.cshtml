@@ -50,11 +50,17 @@
 
         </form>
 
-        <form class="text-center" asp-controller="Login" asp-action="ReestablecerPassword" method="post">
-            <br />
+        <form class="text-center" asp-controller="Usuario" asp-action="Create" method="post">
             <br />
             <p>¿Olvidó su contraseña?</p>
             <button class="btn btn-secondary" type="submit">Reestablecer contraseña</button>
+        </form>
+
+        <form class="text-center" asp-controller="Login" asp-action="Create" method="post">
+            <br />
+            <br />
+            <p>¿No tiene una cuenta?</p>
+            <button class="btn btn-success" type="submit">Registrarse</button>
         </form>
 
     </div>

@@ -2,7 +2,7 @@
 {
     public class GlobalData
     {
-        public static string nombreGlobal;
-        public static string rolGlobal;
+        public static string nombreGlobal = "";
+        public static string rolGlobal = "";
     }
 }

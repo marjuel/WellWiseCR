@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -10,14 +9,19 @@ using System.Text;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
+using Microsoft.EntityFrameworkCore;
+using WellWiseCR.Data;
 
 namespace WellWiseCR.Controllers
 {
     public class LoginController : Controller
     {
-        public LoginController() {
+        private readonly WellWiseCRContext dbcontext;
+
+        public LoginController(WellWiseCRContext context) {
             ViewData["ValidateMessage"] = "";
             ViewData["ValidateMessage2"] = "";
+            dbcontext = context;
         }
 
         public IActionResult IniciarSesion()
@@ -223,9 +227,52 @@ namespace WellWiseCR.Controllers
             
         }//Fin del metodo ReestablecerPassword post
 
-        public string PruebaMensaje() {
-            return "Hola mundo";
+
+
+
+
+
+
+
+
+
+
+
+        // GET: Usuarios/Create
+        public IActionResult Create()
+        {
+            return View();
         }
+
+        // POST: Usuarios/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("NombreUsuario,Password,ConfirmacionPassword,NombreCompleto,Email,Rol,Estado")] Usuario usuario)
+        {
+            ///
+            ///FALTA AGREGAR VALIDACION PARA QUE NO HAYAN DOS
+            ///USUARIOS CON EL MISMO NOMBRE DE USUARIO
+            ///EL MENSAJE DE ERROR ES
+            ///"Nombre de usuario no disponible."
+            ///
+            /// FALTA AGREGAR VALIDACION PARA QUE LA CONTRASEÑA
+            /// CONTENGA UNA MAYUSCULA, UNA MINUSCULA Y UN NUMERO
+            ///
+
+            if (ModelState.IsValid)
+            {
+                dbcontext.Add(usuario);
+                await dbcontext.SaveChangesAsync();
+                return RedirectToAction("IniciarSesion","Login");
+            }
+            return View(usuario);
+
+        }
+
+
+
 
     }//Fin de la clase LoginController
 }//Fin del name space
