@@ -14,32 +14,18 @@ if exists (select name from dbo.sysobjects where name='Usuario')
 drop table [Usuario]
 go
 create table [Usuario](
-	nombreUsuario varchar(150) not null,
-	password varchar(150) not null,
-	confirmacionPassword varchar(150) not null,
-	nombreCompleto varchar(150) not null,
-	email varchar(150) not null,
-	rol varchar(150) not null,
-	estado varchar(150) not null,
-	primary key (nombreUsuario))
+	NombreUsuario varchar (150) not null,
+	Password varchar (150) not null,
+	ConfirmacionPassword varchar (150) not null,
+	Email varchar (150) not null,
+	NombreCompleto varchar(150) not null,
+	FechaNacimiento date not null,
+	Provincia varchar(150) not null,
+	Canton varchar(150) not null,
+	Rol varchar(150) not null,
+	Estado varchar(150) not null,
+	primary key (NombreUsuario))
 go
-
----------------------------------------------------------------------------
-insert into [Usuario]
-values ('stylesadmin','123','123', 'Kevin Ramirez','stylesadmin@gmail.com','Administrador','Activo')
-
-delete from [Usuario]
-select * from [Usuario]
-
-insert into [Usuario]
-values ('marjueladmin','987','987', 'Marcel Campos','marcel.fabri21@gmail.com','Administrador','Activo')
-
-insert into [Usuario]
-values ('nanaempleado','987','987', 'Dayanara Campos','dayanaracampos134@gmail.com','Empleado','Activo')
-
-insert into [Usuario]
-values ('fannyempleado','456','456', 'Fanny Murillo','fannymurillo34@yahoo.com','Empleado','Activo')
-
 --Trigger para transformar los nombres de usuario
 --que se registren en mayuscula
 CREATE TRIGGER ToUpperCase
@@ -53,3 +39,18 @@ BEGIN
     WHERE   NombreUsuario IN (SELECT NombreUsuario FROM inserted)
 
 END
+
+---------------------------------------------------------------------------
+insert into [Usuario]
+values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')
+
+insert into [Usuario]
+values ('Paciente1','11111111','11111111', 'marcel.fabri21@gmail.com', 'Paciente Uno', '30/01/1980', 'Puntarenas', 'Esparza','Paciente','Activo')
+
+
+
+--delete from [Usuario]
+select * from [Usuario]
+
+
+
