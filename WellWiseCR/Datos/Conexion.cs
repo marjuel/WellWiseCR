@@ -15,7 +15,8 @@ namespace WellWiseCR.Datos
         //Contructor con la cadena de conexión
         public Conexion()
         {
-            con = new SqlConnection("Data Source=DESKTOP-FRJUIOA\\SQLEXPRESS;Initial Catalog=DBWellWiseCR;Integrated Security=True");
+            //si se produce un error de "Certificado no confiable" por favor agregue la instruccion "TrustServerCertificate=True;" al final de la cadena de conexion
+            con = new SqlConnection("Data Source=DESKTOP-FRJUIOA\\SQLEXPRESS;Initial Catalog=DBWellWiseCR;Integrated Security=True;TrustServerCertificate=True;");
         }
 
         //Método utilizado para abrir la conexión con la base de datos

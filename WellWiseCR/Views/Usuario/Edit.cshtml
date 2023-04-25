@@ -1,38 +1,40 @@
 ﻿@model WellWiseCR.Models.Usuario
 
 @{
-    ViewData["Title"] = "Registrar usuario - WellWiseCR";
+    ViewData["Title"] = "Edit";
 }
 
-<br />
-<h1>Registrar usuario</h1>
+<h1>Edit</h1>
+
+<h4>Usuario</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="RegistrarUsuario">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NombreUsuario" />
             <div class="form-group">
                 <label asp-for="NombreUsuario" class="control-label">Nombre de usuario</label>
-                <input asp-for="NombreUsuario" class="form-control" />
+                <input disabled asp-for="NombreUsuario" class="form-control" />
                 <span asp-validation-for="NombreUsuario" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Contraseña</label>
-                <input type="password" asp-for="Password" class="form-control" />
+                <label asp-for="Password" class="control-label">Contraseña</label>
+                <input asp-for="Password" class="form-control" />
                 <span asp-validation-for="Password" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Confirmar contraseña</label>
-                <input type="password" asp-for="ConfirmacionPassword" class="form-control" />
+                <label asp-for="ConfirmacionPassword" class="control-label">Confirmación de contraseña</label>
+                <input asp-for="ConfirmacionPassword" class="form-control" />
                 <span asp-validation-for="ConfirmacionPassword" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Correo electrónico</label>
+                <label asp-for="Email" class="control-label">Correo electrónico</label>
                 <input asp-for="Email" class="form-control" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label class="control-label">Nombre completo</label>
+                <label asp-for="NombreCompleto" class="control-label">Nombre completo</label>
                 <input asp-for="NombreCompleto" class="form-control" />
                 <span asp-validation-for="NombreCompleto" class="text-danger"></span>
             </div>
@@ -52,26 +54,8 @@
                 <span asp-validation-for="Canton" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rol" class="control-label">Rol</label>
-                <select asp-for="Rol" class="form-control">
-                    <option disabled selected class="text-muted">Seleccione su rol</option>
-                    <option>Paciente</option>
-                    <option disabled>Administrador</option>
-                </select>
-                <span asp-validation-for="Rol" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Estado</label>
-                <select asp-for="Estado" class="form-control">
-                    <option disabled selected class="text-muted">Seleccione su estado</option>
-                    <option>Activo</option>
-                    <option disabled>Inactivo</option>
-                </select>
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
                 <br />
-                <input type="submit" value="Crear cuenta" class="btn btn-success" />
+                <input type="submit" value="Modificar" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -79,18 +63,17 @@
 
 <div>
     <br />
-    @if (ViewData["ValidateMessage3"] != null)
+    @if (GlobalData.rolGlobal.Equals("Administrador"))
     {
-        <p class="text-center" style="color: red">@ViewData["ValidateMessage3"]</p>
+        <a class="btn btn-secondary" asp-action="Index">Regresar</a>
     }
-    <button class="btn btn-secondary" type="button" onclick="location.href='@Url.Action("IniciarSesion", "Login")'">Regresar</button>
+    else
+    {
+        <button class="btn btn-secondary" type="button" onclick="location.href='@Url.Action("Index", "Home")'">Regresar</button>
+
+    }
 </div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-    <script>
-        $(document).ready(function () {
-            $('header').empty();
-        });
-    </script>
 }

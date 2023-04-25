@@ -22,6 +22,7 @@ namespace WellWiseCR.Controllers
         {
             ViewData["ValidateMessage"] = "";
             ViewData["ValidateMessage2"] = "";
+            ViewData["ValidateMessage3"] = "";
             dbcontext = context;
         }
 
@@ -88,10 +89,10 @@ namespace WellWiseCR.Controllers
                     IsPersistent = false
                 };
 
-                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
+                GlobalData.nombreGlobal = dbu.NombreUsuario;
+                GlobalData.rolGlobal = dbu.Rol;
 
-                GlobalData.nombreGlobal = usuario.NombreUsuario;
-                GlobalData.rolGlobal = usuario.Rol;
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
 
                 //Si la autenticación es correcta permite dirigirse a Home
                 return RedirectToAction("Index", "Home");
@@ -174,7 +175,9 @@ namespace WellWiseCR.Controllers
             }
             catch (Exception ex)
             {
-                throw ex;
+                ViewData["ValidateMessage2"] = "System.Net.Mail.SmtpException: Cuota de correos electrónicos por día excedida.";
+                Console.WriteLine(ex.ToString());
+                //throw ex;
             }
         }//Fin del metodo EnviarEmail
 
@@ -247,24 +250,39 @@ namespace WellWiseCR.Controllers
         public async Task<IActionResult> RegistrarUsuario([Bind("NombreUsuario,Password,ConfirmacionPassword,Email,NombreCompleto," +
             "FechaNacimiento,Provincia,Canton,Rol,Estado")] Usuario usuario)
         {
-            ///
-            ///FALTA AGREGAR VALIDACION PARA QUE NO HAYAN DOS
-            ///USUARIOS CON EL MISMO NOMBRE DE USUARIO
-            ///EL MENSAJE DE ERROR ES
-            ///"Nombre de usuario no disponible."
-            ///
-            /// FALTA AGREGAR VALIDACION PARA QUE LA CONTRASEÑA
-            /// CONTENGA UNA MAYUSCULA, UNA MINUSCULA Y UN NUMERO
-            ///
+            Conexion con = new Conexion();
+            string sql = "select * from [Usuario] where nombreUsuario = '" + usuario.NombreUsuario + "';";
+            SqlCommand comando = new SqlCommand(sql, con.Conectar());
+
+            SqlDataReader dr = comando.ExecuteReader();
+            Usuario dbu = new Usuario();
+            if (dr.Read())
+                dbu.NombreUsuario = dr["nombreUsuario"].ToString().ToUpper();
+            con.Desconectar();
+
+
+            try { 
 
             if (ModelState.IsValid)
             {
+                //if (usuario.NombreUsuario.Equals(dbu.NombreUsuario))
+                //{
+                //    
+                //    return View();
+                //}
+
                 dbcontext.Add(usuario);
                 await dbcontext.SaveChangesAsync();
                 return RedirectToAction("IniciarSesion", "Login");
             }
-            return View(usuario);
 
+            }
+            catch (Exception ex)
+            {
+                ViewData["ValidateMessage3"] = "El nombre de usuario ya se encuentra registrado. Por favor intente con uno nuevo.";
+            }
+
+            return View(usuario);
         }
 
     }//fin de la clase LoginController

@@ -1,0 +1,76 @@
+﻿@model IEnumerable<WellWiseCR.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Usuarios - WellWiseCR";
+}
+
+<h1>Usuarios</h1>
+
+<table class="table">
+    <thead>
+        <tr class="justify-content-center text-center">
+            <th>
+                Nombre de usuario
+            </th>
+            <th>
+                Correo electrónico
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Fecha de nacimiento
+            </th>
+            <th>
+                Rol
+            </th>
+            <th>
+                Estado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr class="justify-content-center text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rol)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.NombreUsuario">Modificar</a>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.NombreUsuario">Detalles</a>
+                    @if (item.Rol.Equals("Administrador"))
+                    {
+                        <button class="btn btn-secondary" title="Un administrador no puede ser desactivado.">Desactivar</button>
+                    }
+                    else
+                    {
+                        @if (item.Estado.Equals("Activo"))
+                        {
+                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.NombreUsuario">Desactivar</a>
+                        }
+                        else
+                        {
+                            <a class="btn btn-success" asp-action="Delete" style="width:30%" asp-route-id="@item.NombreUsuario">Reactivar</a>
+                        }
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
