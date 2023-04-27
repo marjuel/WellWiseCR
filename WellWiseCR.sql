@@ -30,7 +30,7 @@ go
 --que se registren en mayuscula
 CREATE TRIGGER ToUpperCase
         ON [Usuario]
-        INSERT, UPDATE
+        after INSERT
 AS
 BEGIN
 

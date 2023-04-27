@@ -1,10 +1,10 @@
 ﻿@model WellWiseCR.Models.Usuario
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Modificar usuario - WellWiseCR";
 }
 
-<h1>Edit</h1>
+<h1>Modificar</h1>
 
 <h4>Usuario</h4>
 <hr />
@@ -13,11 +13,6 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="NombreUsuario" />
-            <div class="form-group">
-                <label asp-for="NombreUsuario" class="control-label">Nombre de usuario</label>
-                <input disabled asp-for="NombreUsuario" class="form-control" />
-                <span asp-validation-for="NombreUsuario" class="text-danger"></span>
-            </div>
             <div class="form-group">
                 <label asp-for="Password" class="control-label">Contraseña</label>
                 <input asp-for="Password" class="form-control" />
@@ -53,6 +48,8 @@
                 <input asp-for="Canton" class="form-control" />
                 <span asp-validation-for="Canton" class="text-danger"></span>
             </div>
+            <input type="hidden" asp-for="Rol" />
+            <input type="hidden" asp-for="Estado" />
             <div class="form-group">
                 <br />
                 <input type="submit" value="Modificar" class="btn btn-primary" />

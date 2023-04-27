@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using WellWiseCR.Data;
+using WellWiseCR.Datos;
 using WellWiseCR.Models;
 
 namespace WellWiseCR.Controllers
@@ -22,9 +24,9 @@ namespace WellWiseCR.Controllers
         // GET: Usuario
         public async Task<IActionResult> Index()
         {
-              return _context.Usuario != null ? 
-                          View(await _context.Usuario.ToListAsync()) :
-                          Problem("Entity set 'WellWiseCRContext.Usuario'  is null.");
+            return _context.Usuario != null ?
+                        View(await _context.Usuario.ToListAsync()) :
+                        Problem("Entity set 'WellWiseCRContext.Usuario'  is null.");
         }
 
         // GET: Usuario/Details/5
@@ -153,16 +155,29 @@ namespace WellWiseCR.Controllers
             var usuario = await _context.Usuario.FindAsync(id);
             if (usuario != null)
             {
-                _context.Usuario.Remove(usuario);
+                //_context.Usuario.Remove(usuario);
+                Conexion con = new Conexion();
+                string sql;
+                if (usuario.Estado.Equals("Activo"))
+                    sql = "update usuario set estado='Inactivo' where nombreUsuario ='" + usuario.NombreUsuario + "';";
+                else
+                    sql = "update usuario set estado='Activo' where nombreUsuario ='" + usuario.NombreUsuario + "';";
+
+                SqlCommand comando = new SqlCommand(sql, con.Conectar());
+                int registrosAfectados = comando.ExecuteNonQuery();
+
+                con.Desconectar();
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool UsuarioExists(string id)
         {
-          return (_context.Usuario?.Any(e => e.NombreUsuario == id)).GetValueOrDefault();
+            return (_context.Usuario?.Any(e => e.NombreUsuario == id)).GetValueOrDefault();
         }
+
+        
     }
 }
