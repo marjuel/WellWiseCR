@@ -49,7 +49,7 @@ values ('Paciente1','11111111','11111111', 'marcel.fabri21@gmail.com', 'Paciente
 
 
 
---delete from [Usuario]
+--delete from [Usuario] where nombreUsuario = 'choque'
 select * from [Usuario]
 
 

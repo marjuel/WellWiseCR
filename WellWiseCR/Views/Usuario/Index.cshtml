@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WellWiseCR.Models.Usuario>
 
 @{
-    ViewData["Title"] = "Usuarios - WellWiseCR";
+    ViewData["Title"] = "Usuarios";
 }
 
 <h1>Usuarios</h1>
@@ -32,6 +32,7 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
+            string fechaNacimiento = item.FechaNacimiento.ToString("dd/MM/yyyy");
             <tr class="justify-content-center text-center">
             <td>
                 @Html.DisplayFor(modelItem => item.NombreUsuario)
@@ -43,7 +44,8 @@
                 @Html.DisplayFor(modelItem => item.NombreCompleto)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaNacimiento)
+                @*@Html.DisplayFor(modelItem => item.FechaNacimiento)*@
+                @fechaNacimiento
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Rol)

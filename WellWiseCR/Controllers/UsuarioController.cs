@@ -120,7 +120,10 @@ namespace WellWiseCR.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                if (usuario.Rol.Equals("Administrador"))
+                    return RedirectToAction(nameof(Index));
+                else
+                    return RedirectToAction("Index","Home");
             }
             return View(usuario);
         }
