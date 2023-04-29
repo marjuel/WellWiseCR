@@ -40,6 +40,18 @@ BEGIN
 
 END
 
+
+if exists (select name from dbo.sysobjects where name='Especialidad')
+drop table [Especialidad]
+go
+create table [Especialidad](
+	IdEspecialidad int not null,
+	NombreEspecialidad varchar(150) not null,
+	Descripcion varchar (1000) not null,
+	Estado varchar(150) not null,
+	primary key (IdEspecialidad))
+go
+
 ---------------------------------------------------------------------------
 insert into [Usuario]
 values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')
@@ -47,10 +59,19 @@ values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marce
 insert into [Usuario]
 values ('Paciente1','11111111','11111111', 'marcel.fabri21@gmail.com', 'Paciente Uno', '30/01/1980', 'Puntarenas', 'Esparza','Paciente','Activo')
 
-
+insert into [Especialidad]
+values (1, 'Cardiología', 'Se especializa en las enfermedades relacionadas con el corazón', 'Activo')
+insert into [Especialidad]
+values (2, 'Oftalmología', 'Se especializa en las enfermedades relacionadas con la vista', 'Activo')
+insert into [Especialidad]
+values (3, 'Nefrología', 'Se especializa en las enfermedades relacionadas con los riñones', 'Activo')
 
 --delete from [Usuario] where nombreUsuario = 'choque'
 select * from [Usuario]
 
+
+select * from especialidad
+
+select count(*)+1 from especialidad
 
 

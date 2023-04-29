@@ -34,6 +34,16 @@
                             }
                         </li>
                         <li class="nav-item">
+                            @if (GlobalData.rolGlobal.Equals("Administrador"))
+                            {
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Especialidad" asp-action="Index">Especialidades</a>
+                            }
+                            else
+                            {
+                                @*POSIBLE NUEVA OPCION PARA PACIENTE*@
+                            }
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">

@@ -15,5 +15,7 @@ namespace WellWiseCR.Data
         }
 
         public DbSet<WellWiseCR.Models.Usuario> Usuario { get; set; } = default!;
+
+        public DbSet<WellWiseCR.Models.Especialidad>? Especialidad { get; set; }
     }
 }
