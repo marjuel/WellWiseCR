@@ -1,17 +1,20 @@
 ﻿@model IEnumerable<WellWiseCR.Models.Especialidad>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Especialidades";
 }
 
-<h1>Index</h1>
+<h1>Especialidades</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a class="btn btn-warning" asp-action="Create">Registrar especialidad</a>
 </p>
 <table class="table">
     <thead>
-        <tr>
+        <tr class="justify-content-center text-center">
+            <th>
+                @Html.DisplayNameFor(model => model.IdEspecialidad)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.NombreEspecialidad)
             </th>
@@ -26,7 +29,10 @@
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>
+            <tr class="justify-content-center text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdEspecialidad)
+                </td>
             <td>
                 @Html.DisplayFor(modelItem => item.NombreEspecialidad)
             </td>
@@ -37,9 +43,16 @@
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.IdEspecialidad">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.IdEspecialidad">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.IdEspecialidad">Delete</a>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdEspecialidad">Modificar</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdEspecialidad">Detalles</a>
+                    @if (item.Estado.Equals("Activo"))
+                    {
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdEspecialidad">Desactivar</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-success" asp-action="Delete" style="width:30%" asp-route-id="@item.IdEspecialidad">Reactivar</a>
+                    }
             </td>
         </tr>
 }
