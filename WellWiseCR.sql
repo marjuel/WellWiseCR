@@ -33,11 +33,9 @@ CREATE TRIGGER ToUpperCase
         after INSERT
 AS
 BEGIN
-
     UPDATE  [Usuario]
     SET     NombreUsuario = UPPER(NombreUsuario)
     WHERE   NombreUsuario IN (SELECT NombreUsuario FROM inserted)
-
 END
 
 
@@ -51,7 +49,16 @@ create table [Especialidad](
 	Estado varchar(150) not null,
 	primary key (IdEspecialidad))
 go
-
+drop trigger GenIdEspecialidad
+CREATE TRIGGER GenIdEspecialidad
+        ON [Especialidad]
+        after INSERT
+AS
+BEGIN
+    UPDATE  [Especialidad]
+    SET     IdEspecialidad = (select count(IdEspecialidad) from Especialidad)
+    WHERE   IdEspecialidad IN (SELECT IdEspecialidad FROM inserted)
+END
 ---------------------------------------------------------------------------
 insert into [Usuario]
 values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')
@@ -66,10 +73,16 @@ values (2, 'Oftalmología', 'Se especializa en las enfermedades relacionadas con 
 insert into [Especialidad]
 values (3, 'Nefrología', 'Se especializa en las enfermedades relacionadas con los riñones', 'Activo')
 
---delete from [Usuario] where nombreUsuario = 'choque'
+insert into [Especialidad]
+values (300, 'Neumologia', 'Se especializa en las enfermedades relacionadas con los pulmones', 'Activo')
+
+insert into [Especialidad] (NombreEspecialidad, Descripcion, Estado)
+values ('Neumologia', 'Se especializa en las enfermedades relacionadas con los pulmones', 'Activo')
+
+--delete from [Usuario]
 select * from [Usuario]
 
-
+delete from especialidad
 select * from especialidad
 
 select count(*)+1 from especialidad

@@ -1,10 +1,10 @@
 ﻿@model WellWiseCR.Models.Especialidad
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Registrar especialidad";
 }
 
-<h1>Create</h1>
+<h1>Registrar</h1>
 
 <h4>Especialidad</h4>
 <hr />
@@ -13,12 +13,12 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="NombreEspecialidad" class="control-label"></label>
+                <label asp-for="NombreEspecialidad" class="control-label">Nombre de especialidad</label>
                 <input asp-for="NombreEspecialidad" class="form-control" />
                 <span asp-validation-for="NombreEspecialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Descripcion" class="control-label"></label>
+                <label asp-for="Descripcion" class="control-label">Descripción</label>
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
@@ -28,14 +28,20 @@
                 <span asp-validation-for="Estado" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="Registrar especialidad" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <br />
+    @if (ViewData["ValidateMessage3"] != null)
+    {
+        <p class="text-center" style="color: red">@ViewData["ValidateMessage3"]</p>
+    }
+    <button class="btn btn-secondary" type="button" onclick="location.href='@Url.Action("Index", "Especialidad")'">Regresar</button>
 </div>
 
 @section Scripts {

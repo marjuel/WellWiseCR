@@ -7,7 +7,6 @@ namespace WellWiseCR.Models
     {
         [Required]
         [Key]
-        [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public int IdEspecialidad { get; set; }
 
         [Required]
@@ -15,7 +14,7 @@ namespace WellWiseCR.Models
         public string NombreEspecialidad { get; set; }
 
         [Required]
-        [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
+        [MaxLength(1000, ErrorMessage = "Puede ingresar un máximo de 1000 caracteres.")]
         public string Descripcion { get; set; }
 
         [Required]
