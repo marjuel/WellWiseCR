@@ -1,0 +1,67 @@
+﻿@model IEnumerable<WellWiseCR.Models.Especialista>
+
+@{
+    ViewData["Title"] = "Especialistas";
+}
+
+<h1>Especialistas</h1>
+
+<p>
+    <a class="btn btn-warning" asp-action="Create">Registrar especialista</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="justify-content-center text-center">
+            <th>
+                ID de especialista
+            </th>
+            <th>
+                Especialidad
+            </th>
+            <th>
+                Correo electrónico
+            </th>
+            <th>
+                Nombre completo
+            </th>
+            <th>
+                Estado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="justify-content-center text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEspecialista)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad.NombreEspecialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+
+            <td>
+                <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdEspecialista">Modificar</a>
+                <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdEspecialista">Detalles</a>
+                @if (item.Estado.Equals("Activo"))
+                {
+                    <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdEspecialista">Desactivar</a>
+                }
+                else
+                {
+                    <a class="btn btn-success" asp-action="Delete" style="width:30%" asp-route-id="@item.IdEspecialista">Reactivar</a>
+                }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

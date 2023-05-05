@@ -1,0 +1,59 @@
+﻿@model WellWiseCR.Models.Especialista
+
+@{
+    ViewData["Title"] = "Registrar especialista";
+}
+
+<h1>Registrar especialista</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdEspecialidad" class="control-label">ID de especialidad</label>
+                <select asp-for="IdEspecialidad" class ="form-control" asp-items="ViewBag.IdEspecialidad">
+                    <option value="" disabled selected>Seleccione la especialidad</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Correo electrónico</label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreCompleto" class="control-label">Nombre completo</label>
+                <input asp-for="NombreCompleto" class="form-control" />
+                <span asp-validation-for="NombreCompleto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Provincia" class="control-label">Provincia</label>
+                <input asp-for="Provincia" class="form-control" />
+                <span asp-validation-for="Provincia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Canton" class="control-label">Cantón</label>
+                <input asp-for="Canton" class="form-control" />
+                <span asp-validation-for="Canton" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Estado" class="control-label">Estado</label>
+                <input asp-for="Estado" class="form-control" />
+                <span asp-validation-for="Estado" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Registrar especialidad" class="btn btn-success" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <br />
+    <button class="btn btn-secondary" type="button" onclick="location.href='@Url.Action("Index", "Especialista")'">Regresar</button>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
