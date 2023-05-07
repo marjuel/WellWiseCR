@@ -50,7 +50,22 @@ namespace WellWiseCR.Controllers
         // GET: Especialista/Create
         public IActionResult Create()
         {
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad, "IdEspecialidad", "NombreEspecialidad");
+            /*
+            // cargar lista de especialidades activas
+            var especialidadesActivas = _context.Especialidad.Where(e => e.Estado == "Activo").ToList();
+
+            // crear lista de opciones para el dropdown
+            var opcionesEspecialidades = especialidadesActivas.Select(e => new SelectListItem
+            {
+                Value = e.IdEspecialidad.ToString(),
+                Text = e.NombreEspecialidad
+            }).ToList();
+
+            // pasar lista de opciones a la vista
+            ViewData["Especialidades"] = opcionesEspecialidades;*/
+
+            //ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where, "IdEspecialidad", "NombreEspecialidad");
+            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where(e => e.Estado == "Activo").ToList(), "IdEspecialidad", "NombreEspecialidad");
             return View();
         }
 
