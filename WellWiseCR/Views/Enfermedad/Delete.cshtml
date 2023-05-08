@@ -1,18 +1,18 @@
-﻿@model WellWiseCR.Models.Especialista
+﻿@model WellWiseCR.Models.Enfermedad
 
 @if (Model.Estado.Equals("Activo"))
 {
-    ViewData["Title"] = "Desactivar especialista";
-    <h1>Desactivar especialista</h1>
+    ViewData["Title"] = "Desactivar enfermedad";
+    <h1>Desactivar enfermedad</h1>
     <br />
-    <h3>¿Está seguro de que desea desactivar este especialista?</h3>
+    <h3>¿Está seguro de que desea desactivar esta enfermedad?</h3>
 }
 else
 {
-    ViewData["Title"] = "Reactivar especialista";
-    <h1>Reactivar especialista</h1>
+    ViewData["Title"] = "Reactivar enfermedad";
+    <h1>Reactivar enfermedad</h1>
     <br />
-    <h3>¿Está seguro de que desea reactivar este especialista?</h3>
+    <h3>¿Está seguro de que desea reactivar esta enfermedad?</h3>
 }
 <div>
     <hr />
@@ -24,19 +24,13 @@ else
             @Html.DisplayFor(model => model.Especialidad.NombreEspecialidad)
         </dd>
         <dt class = "col-sm-2">
-            Correo electrónico
+            Nombre de enfermedad
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Email)
+            @Html.DisplayFor(model => model.NombreEnfermedad)
         </dd>
         <dt class = "col-sm-2">
-            Nombre completo
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.NombreCompleto)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Estado)
+            Estado
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.Estado)
@@ -44,7 +38,7 @@ else
     </dl>
     
     <form asp-action="Delete">
-        <input type="hidden" asp-for="IdEspecialista" />
+        <input type="hidden" asp-for="IdEnfermedad" />
         @if (Model.Estado.Equals("Activo"))
         {
             <input type="submit" value="Desactivar" class="btn btn-danger" />
@@ -53,7 +47,6 @@ else
         {
             <input type="submit" value="Reactivar" class="btn btn-success" />
         }
-
     </form>
     <div>
         <br />

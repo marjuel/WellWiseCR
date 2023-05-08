@@ -1,0 +1,62 @@
+﻿@model WellWiseCR.Models.Enfermedad
+
+@{
+    ViewData["Title"] = "Modificar enfermedad";
+}
+
+<h1>Modificar enfermedad</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdEnfermedad" />
+            <div class="form-group">
+                <label asp-for="IdEspecialidad" class="control-label">Especialidad</label>
+                <select asp-for="IdEspecialidad" class="form-control" asp-items="ViewBag.IdEspecialidad">
+                    <option value="" disabled selected>Seleccione la especialidad</option>
+                </select>
+                <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreEnfermedad" class="control-label">Nombre de enfermedad</label>
+                <input asp-for="NombreEnfermedad" class="form-control" />
+                <span asp-validation-for="NombreEnfermedad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Sintomas" class="control-label">Síntomas</label>
+                <input asp-for="Sintomas" class="form-control" />
+                <span asp-validation-for="Sintomas" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NivelAlerta" class="control-label">Nivel de alerta</label>
+                <select asp-for="NivelAlerta" class="form-control">
+                    <option value="" disabled selected>Seleccione el nivel de alerta</option>
+                    <option style="color:green" value="Bajo">Bajo</option>
+                    <option style="color:orange" value="Medio">Medio</option>
+                    <option style="color:red" value="Alto">Alto</option>
+                </select>
+                <span asp-validation-for="NivelAlerta" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Recomendaciones" class="control-label">Recomendaciones</label>
+                <input asp-for="Recomendaciones" class="form-control" />
+                <span asp-validation-for="Recomendaciones" class="text-danger"></span>
+            </div>
+            <input type="hidden" asp-for="Estado" class="form-control" />
+            <div class="form-group">
+                <br />
+                <input type="submit" value="Modificar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <br />
+    <button class="btn btn-secondary" type="button" onclick="location.href='@Url.Action("Index", "Enfermedad")'">Regresar</button>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

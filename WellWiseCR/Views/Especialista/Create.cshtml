@@ -11,10 +11,11 @@
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="IdEspecialidad" class="control-label">ID de especialidad</label>
+                <label asp-for="IdEspecialidad" class="control-label">Especialidad</label>
                 <select asp-for="IdEspecialidad" class ="form-control" asp-items="ViewBag.IdEspecialidad">
                     <option value="" disabled selected>Seleccione la especialidad</option>
                 </select>
+                <span asp-validation-for="IdEspecialidad" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Email" class="control-label">Correo electrónico</label>
@@ -36,11 +37,7 @@
                 <input asp-for="Canton" class="form-control" />
                 <span asp-validation-for="Canton" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Estado" class="control-label">Estado</label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
+            <input value="Activo" hidden asp-for="Estado" class="form-control" />
             <div class="form-group">
                 <br />
                 <input type="submit" value="Registrar especialidad" class="btn btn-success" />

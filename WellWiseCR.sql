@@ -67,6 +67,25 @@ alter table Especialista
 	add foreign key (IdEspecialidad)
 	references Especialidad(IdEspecialidad);
 go
+
+
+if exists (select name from dbo.sysobjects where name='Enfermedad')
+drop table [Enfermedad]
+go
+create table [Enfermedad](
+	IdEnfermedad int not null,
+	IdEspecialidad int not null,
+	NombreEnfermedad varchar(150) not null,
+	Sintomas varchar(1000) not null,
+	NivelAlerta varchar(150) not null,
+	Recomendaciones varchar(1000) not null,
+	Estado varchar(150) not null,
+	primary key (IdEnfermedad))
+go
+alter table Enfermedad
+	add foreign key (IdEspecialidad)
+	references Especialidad(IdEspecialidad);
+go
 ---------------------------------------------------------------------------
 insert into [Usuario]
 values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')

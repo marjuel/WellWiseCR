@@ -12,42 +12,42 @@ using WellWiseCR.Models;
 
 namespace WellWiseCR.Controllers
 {
-    public class EspecialistaController : Controller
+    public class EnfermedadController : Controller
     {
         private readonly WellWiseCRContext _context;
 
-        public EspecialistaController(WellWiseCRContext context)
+        public EnfermedadController(WellWiseCRContext context)
         {
             _context = context;
         }
 
-        // GET: Especialista
+        // GET: Enfermedad
         public async Task<IActionResult> Index()
         {
-            var wellWiseCRContext = _context.Especialista.Include(e => e.Especialidad);
+            var wellWiseCRContext = _context.Enfermedad.Include(e => e.Especialidad);
             return View(await wellWiseCRContext.ToListAsync());
         }
 
-        // GET: Especialista/Details/5
+        // GET: Enfermedad/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.Especialista == null)
+            if (id == null || _context.Enfermedad == null)
             {
                 return NotFound();
             }
 
-            var especialista = await _context.Especialista
+            var enfermedad = await _context.Enfermedad
                 .Include(e => e.Especialidad)
-                .FirstOrDefaultAsync(m => m.IdEspecialista == id);
-            if (especialista == null)
+                .FirstOrDefaultAsync(m => m.IdEnfermedad == id);
+            if (enfermedad == null)
             {
                 return NotFound();
             }
 
-            return View(especialista);
+            return View(enfermedad);
         }
 
-        // GET: Especialista/Create
+        // GET: Enfermedad/Create
         public IActionResult Create()
         {
             ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where(e => e.Estado == "Activo").ToList(), "IdEspecialidad", "NombreEspecialidad");
@@ -58,7 +58,7 @@ namespace WellWiseCR.Controllers
         {
             int nuevoId = 0;
             Conexion con = new Conexion();
-            string sql = "select count(*)+1 from especialista;";
+            string sql = "select count(*)+1 from enfermedad;";
             SqlCommand comando = new SqlCommand(sql, con.Conectar());
 
             SqlDataReader dr = comando.ExecuteReader();
@@ -69,20 +69,20 @@ namespace WellWiseCR.Controllers
             return nuevoId;
         }//fin del metodo generar id
 
-        // POST: Especialista/Create
+        // POST: Enfermedad/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdEspecialista,IdEspecialidad,Email,NombreCompleto,Provincia,Canton,Estado")] Especialista esp)
+        public async Task<IActionResult> Create([Bind("IdEnfermedad,IdEspecialidad,NombreEnfermedad,Sintomas,NivelAlerta,Recomendaciones,Estado")] Enfermedad enf)
         {
             try
             {
                 Conexion con = new Conexion();
-                esp.IdEspecialista = GenerarId();
-                esp.Estado = "Activo";
-                string sql = "insert into [Especialista] values('" + esp.IdEspecialista + "', '" + esp.IdEspecialidad + "', '"
-                    + esp.Email + "', '" + esp.NombreCompleto + "', '" + esp.Provincia + "', '" + esp.Canton + "', '" + esp.Estado + "')";
+                enf.IdEnfermedad = GenerarId();
+                enf.Estado = "Activo";
+                string sql = "insert into [Enfermedad] values('" + enf.IdEnfermedad + "', '" + enf.IdEspecialidad + "', '"
+                    + enf.NombreEnfermedad + "', '" + enf.Sintomas + "', '" + enf.NivelAlerta + "', '" + enf.Recomendaciones + "', '" + enf.Estado + "')";
                 SqlCommand comando = new SqlCommand(sql, con.Conectar());
                 int registrosAfectados = comando.ExecuteNonQuery();
                 con.Desconectar();
@@ -95,31 +95,31 @@ namespace WellWiseCR.Controllers
             }
         }
 
-        // GET: Especialista/Edit/5
+        // GET: Enfermedad/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.Especialista == null)
+            if (id == null || _context.Enfermedad == null)
             {
                 return NotFound();
             }
 
-            var especialista = await _context.Especialista.FindAsync(id);
-            if (especialista == null)
+            var enfermedad = await _context.Enfermedad.FindAsync(id);
+            if (enfermedad == null)
             {
                 return NotFound();
             }
             ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where(e => e.Estado == "Activo").ToList(), "IdEspecialidad", "NombreEspecialidad");
-            return View(especialista);
+            return View(enfermedad);
         }
 
-        // POST: Especialista/Edit/5
+        // POST: Enfermedad/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdEspecialista,IdEspecialidad,Email,NombreCompleto,Provincia,Canton,Estado")] Especialista esp)
+        public async Task<IActionResult> Edit(int id, [Bind("IdEnfermedad,IdEspecialidad,NombreEnfermedad,Sintomas,NivelAlerta,Recomendaciones,Estado")] Enfermedad enf)
         {
-            if (id != esp.IdEspecialista)
+            if (id != enf.IdEnfermedad)
             {
                 return NotFound();
             }
@@ -127,8 +127,8 @@ namespace WellWiseCR.Controllers
             try
             {
                 Conexion con = new Conexion();
-                string sql = "update especialista set IdEspecialidad='" + esp.IdEspecialidad + "',Email='" + esp.Email+ "',nombreCompleto='" 
-                    + esp.NombreCompleto+ "',Provincia='" + esp.Provincia + "',Canton='" + esp.Canton + "' where IdEspecialista ='" + esp.IdEspecialista+ "';";
+                string sql = "update enfermedad set IdEspecialidad='" + enf.IdEspecialidad + "',NombreEnfermedad='" + enf.NombreEnfermedad + "',Sintomas='"
+                    + enf.Sintomas + "',NivelAlerta='" + enf.NivelAlerta + "',Recomendaciones='" + enf.Recomendaciones + "' where IdEnfermedad ='" + enf.IdEnfermedad + "';";
                 SqlCommand comando = new SqlCommand(sql, con.Conectar());
                 int registrosAfectados = comando.ExecuteNonQuery();
                 con.Desconectar();
@@ -141,58 +141,58 @@ namespace WellWiseCR.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // GET: Especialista/Delete/5
+        // GET: Enfermedad/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.Especialista == null)
+            if (id == null || _context.Enfermedad == null)
             {
                 return NotFound();
             }
 
-            var especialista = await _context.Especialista
+            var enfermedad = await _context.Enfermedad
                 .Include(e => e.Especialidad)
-                .FirstOrDefaultAsync(m => m.IdEspecialista == id);
-            if (especialista == null)
+                .FirstOrDefaultAsync(m => m.IdEnfermedad == id);
+            if (enfermedad == null)
             {
                 return NotFound();
             }
 
-            return View(especialista);
+            return View(enfermedad);
         }
 
-        // POST: Especialista/Delete/5
+        // POST: Enfermedad/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.Especialista == null)
+            if (_context.Enfermedad == null)
             {
-                return Problem("Entity set 'WellWiseCRContext.Especialista'  is null.");
+                return Problem("Entity set 'WellWiseCRContext.Enfermedad'  is null.");
             }
-            var especialista = await _context.Especialista.FindAsync(id);
-            if (especialista != null)
+            var enfermedad = await _context.Enfermedad.FindAsync(id);
+            if (enfermedad != null)
             {
-                //_context.Especialidad.Remove(especialidad);
+                //_context.Enfermedad.Remove(enfermedad);
                 Conexion con = new Conexion();
                 string sql;
-                if (especialista.Estado.Equals("Activo"))
-                    sql = "update especialista set estado='Inactivo' where idEspecialista ='" + especialista.IdEspecialista + "';";
+                if (enfermedad.Estado.Equals("Activo"))
+                    sql = "update enfermedad set estado='Inactivo' where idEnfermedad ='" + enfermedad.IdEnfermedad + "';";
                 else
-                    sql = "update especialista set estado='Activo' where idEspecialista ='" + especialista.IdEspecialista + "';";
+                    sql = "update enfermedad set estado='Activo' where idEnfermedad ='" + enfermedad.IdEnfermedad + "';";
 
                 SqlCommand comando = new SqlCommand(sql, con.Conectar());
                 int registrosAfectados = comando.ExecuteNonQuery();
 
                 con.Desconectar();
             }
-
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool EspecialistaExists(int id)
+        private bool EnfermedadExists(int id)
         {
-          return (_context.Especialista?.Any(e => e.IdEspecialista == id)).GetValueOrDefault();
+          return (_context.Enfermedad?.Any(e => e.IdEnfermedad == id)).GetValueOrDefault();
         }
     }
 }

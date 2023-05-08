@@ -1,0 +1,59 @@
+﻿@model IEnumerable<WellWiseCR.Models.Enfermedad>
+
+@{
+    ViewData["Title"] = "Enfermedades";
+}
+
+<h1>Enfermedades</h1>
+<p>
+    <a class="btn btn-warning" asp-action="Create">Registrar enfermedad</a>
+</p>
+<table class="table">
+    <thead>
+        <tr class="justify-content-center text-center">
+            <th>
+                ID de enfermedad
+            </th>
+            <th>
+                Especialidad
+            </th>
+            <th>
+                Nombre de enfermedad
+            </th>
+            <th>
+                Estado
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr class="justify-content-center text-center">
+            <td>
+                @Html.DisplayFor(modelItem => item.IdEnfermedad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Especialidad.NombreEspecialidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreEnfermedad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estado)
+            </td>
+            <td>
+                    <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdEnfermedad">Modificar</a>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdEnfermedad">Detalles</a>
+                    @if (item.Estado.Equals("Activo"))
+                    {
+                        <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdEnfermedad">Desactivar</a>
+                    }
+                    else
+                    {
+                        <a class="btn btn-success" asp-action="Delete" style="width:20%" asp-route-id="@item.IdEnfermedad">Reactivar</a>
+                    }
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

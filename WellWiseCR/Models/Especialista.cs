@@ -5,11 +5,11 @@ namespace WellWiseCR.Models
 {
     public class Especialista
     {
-        [Required]
+        [Required(ErrorMessage = "El campo ID de especialista es obligatorio.")]
         [Key]
         public int IdEspecialista { get; set; }
 
-        [Required(ErrorMessage = "El campo ID de especialista es obligatorio.")]
+        [Required(ErrorMessage = "El campo especialidad es obligatorio.")]
         [ForeignKey("Especialidad")]
         public int IdEspecialidad { get; set; }
 
