@@ -47,18 +47,5 @@ namespace WellWiseCR.Models
         [Required(ErrorMessage = "El campo estado es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string Estado { get; set; }
-
-        /*public Usuario() {
-            this.NombreUsuario = "";
-            this.Passwaord = "";
-            this.ConfirmacionPassword = "";
-            this.Email = "";
-            this.NombreCompleto = "";
-            this.FechaNacimiento = DateTime.Today;
-            this.Provincia = "";
-            this.Canton = "";
-            this.Rol = "";
-            this.Estado = "";
-        }*/
     }
 }

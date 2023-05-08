@@ -65,6 +65,7 @@ namespace WellWiseCR.Controllers
         public async Task<IActionResult> Create([Bind("IdEspecialidad,NombreEspecialidad,Descripcion,Estado")] Especialidad especialidad)
         {
             especialidad.IdEspecialidad = GenerarId();
+            especialidad.Estado = "Activo";
 
             Conexion con = new Conexion();
             string sql = "select * from [Especialidad] where nombreEspecialidad = '" + especialidad.NombreEspecialidad + "';";

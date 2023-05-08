@@ -19,9 +19,6 @@
                 Nombre de especialidad
             </th>
             <th>
-                Descripción
-            </th>
-            <th>
                 Estado
             </th>
             <th></th>
@@ -37,9 +34,6 @@
                 @Html.DisplayFor(modelItem => item.NombreEspecialidad)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Estado)
             </td>
             <td>
@@ -51,7 +45,7 @@
                     }
                     else
                     {
-                        <a class="btn btn-success" asp-action="Delete" style="width:30%" asp-route-id="@item.IdEspecialidad">Reactivar</a>
+                        <a class="btn btn-success" asp-action="Delete" style="width:20%" asp-route-id="@item.IdEspecialidad">Reactivar</a>
                     }
             </td>
         </tr>

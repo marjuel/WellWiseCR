@@ -20,11 +20,7 @@
                 <input asp-for="Descripcion" class="form-control" />
                 <span asp-validation-for="Descripcion" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
+            <input value="Activo" hidden asp-for="Estado" class="form-control" />
             <div class="form-group">
                 <br />
                 <input type="submit" value="Registrar especialidad" class="btn btn-success" />

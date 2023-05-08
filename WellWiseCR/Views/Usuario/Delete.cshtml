@@ -1,19 +1,20 @@
 ﻿@model WellWiseCR.Models.Usuario
 
 @{
-    ViewData["Title"] = "Desactivar usuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
 @if (Model.Estado.Equals("Activo"))
 {
+    ViewData["Title"] = "Desactivar usuario";
     <h1>Deactivar usuario</h1>
     <br />
     <h3>¿Está seguro de que desea desactivar este usuario?</h3>
 }
 else
 {
+    ViewData["Title"] = "Reactivar usuario";
     <h1>Reactivar usuario</h1>
     <br />
     <h3>¿Está seguro de que desea reactivar este usuario?</h3>

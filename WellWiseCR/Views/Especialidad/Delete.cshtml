@@ -1,17 +1,15 @@
 ﻿@model WellWiseCR.Models.Especialidad
 
-@{
-    ViewData["Title"] = "Desactivar especialidad";
-}
-
 @if (Model.Estado.Equals("Activo"))
 {
+    ViewData["Title"] = "Desactivar especialidad";
     <h1>Deactivar especialidad</h1>
     <br />
     <h3>¿Está seguro de que desea desactivar esta especialidad?</h3>
 }
 else
 {
+    ViewData["Title"] = "Reactivar especialidad";
     <h1>Reactivar especialidad</h1>
     <br />
     <h3>¿Está seguro de que desea reactivar esta especialidad?</h3>

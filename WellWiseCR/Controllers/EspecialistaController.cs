@@ -50,21 +50,6 @@ namespace WellWiseCR.Controllers
         // GET: Especialista/Create
         public IActionResult Create()
         {
-            /*
-            // cargar lista de especialidades activas
-            var especialidadesActivas = _context.Especialidad.Where(e => e.Estado == "Activo").ToList();
-
-            // crear lista de opciones para el dropdown
-            var opcionesEspecialidades = especialidadesActivas.Select(e => new SelectListItem
-            {
-                Value = e.IdEspecialidad.ToString(),
-                Text = e.NombreEspecialidad
-            }).ToList();
-
-            // pasar lista de opciones a la vista
-            ViewData["Especialidades"] = opcionesEspecialidades;*/
-
-            //ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where, "IdEspecialidad", "NombreEspecialidad");
             ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where(e => e.Estado == "Activo").ToList(), "IdEspecialidad", "NombreEspecialidad");
             return View();
         }
@@ -122,7 +107,7 @@ namespace WellWiseCR.Controllers
             {
                 return NotFound();
             }
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad, "IdEspecialidad", "NombreEspecialidad", especialista.IdEspecialidad);
+            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where(e => e.Estado == "Activo").ToList(), "IdEspecialidad", "NombreEspecialidad");
             return View(especialista);
         }
 
@@ -131,35 +116,28 @@ namespace WellWiseCR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("IdEspecialista,IdEspecialidad,Email,NombreCompleto,Provincia,Canton,Estado")] Especialista especialista)
+        public async Task<IActionResult> Edit(int id, [Bind("IdEspecialista,IdEspecialidad,Email,NombreCompleto,Provincia,Canton,Estado")] Especialista esp)
         {
-            if (id != especialista.IdEspecialista)
+            if (id != esp.IdEspecialista)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
+            try
             {
-                try
-                {
-                    _context.Update(especialista);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!EspecialistaExists(especialista.IdEspecialista))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                Conexion con = new Conexion();
+                string sql = "update especialista set IdEspecialidad='" + esp.IdEspecialidad + "',Email='" + esp.Email+ "',nombreCompleto='" 
+                    + esp.NombreCompleto+ "',Provincia='" + esp.Provincia + "',Canton='" + esp.Canton + "' where IdEspecialista ='" + esp.IdEspecialista+ "';";
+                SqlCommand comando = new SqlCommand(sql, con.Conectar());
+                int registrosAfectados = comando.ExecuteNonQuery();
+                con.Desconectar();
             }
-            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad, "IdEspecialidad", "NombreEspecialidad", especialista.IdEspecialidad);
-            return View(especialista);
+            catch (Exception ex)
+            {
+                return NotFound();
+            }
+            ViewData["IdEspecialidad"] = new SelectList(_context.Especialidad.Where(e => e.Estado == "Activo").ToList(), "IdEspecialidad", "NombreEspecialidad");
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Especialista/Delete/5
