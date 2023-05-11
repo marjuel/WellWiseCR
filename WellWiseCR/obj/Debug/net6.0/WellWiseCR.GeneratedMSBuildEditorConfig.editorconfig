@@ -16,6 +16,26 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\Admin\Desktop\WellWiseCR\WellWiseCR
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/Admin/Desktop/WellWiseCR/WellWiseCR/Views/Diagnostico/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlhZ25vc3RpY29cQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/WellWiseCR/WellWiseCR/Views/Diagnostico/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlhZ25vc3RpY29cRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/WellWiseCR/WellWiseCR/Views/Diagnostico/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlhZ25vc3RpY29cRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/WellWiseCR/WellWiseCR/Views/Diagnostico/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlhZ25vc3RpY29cRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/Admin/Desktop/WellWiseCR/WellWiseCR/Views/Diagnostico/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlhZ25vc3RpY29cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/Admin/Desktop/WellWiseCR/WellWiseCR/Views/Enfermedad/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRW5mZXJtZWRhZFxDcmVhdGUuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 

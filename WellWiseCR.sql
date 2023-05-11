@@ -86,6 +86,40 @@ alter table Enfermedad
 	add foreign key (IdEspecialidad)
 	references Especialidad(IdEspecialidad);
 go
+
+if exists (select name from dbo.sysobjects where name='Diagnostico')
+drop table [Diagnostico]
+go
+create table [Diagnostico](
+	IdDiagnostico int not null,
+	NombreUsuario varchar (150) not null,
+	FechaHora datetime not null,
+	Peso varchar(150) not null,
+	Estatura varchar(150) not null,
+	ActividadFisica varchar(150) not null,
+	CondicionCardiaca varchar(150) not null,
+	Estado varchar(150) not null,
+	primary key (IdDiagnostico))
+go
+alter table [Diagnostico]
+	add foreign key (NombreUsuario)
+	references Usuario(NombreUsuario);
+go
+
+if exists (select name from dbo.sysobjects where name='Detalle')
+drop table [Detalle]
+create table [Detalle](
+	IdDiagnostico int not null,
+	IdEnfermedad int not null)
+go
+alter table [Detalle]
+	add foreign key (IdDiagnostico)
+	references Diagnostico(IdDiagnostico);
+	alter table [Detalle]
+	add foreign key (IdEnfermedad)
+	references Enfermedad(IdEnfermedad);
+go
+
 ---------------------------------------------------------------------------
 insert into [Usuario]
 values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')
@@ -109,14 +143,23 @@ values ('Neumologia', 'Se especializa en las enfermedades relacionadas con los p
 insert into [Especialista] 
 values (51, 2, 'Dr. Kenzo Tenma', 'tenma@email.com', 'Alajuela', 'Grecia', 'Activo')
 
+insert into Diagnostico values (1, 'PACIENTE1', '10/05/2023 19:38:15','70kg', '170cm', 'Alta', 'Saludable', 'Activo')
+
+delete from diagnostico
+select * from Diagnostico
 --delete from [Usuario]
 select * from [Usuario]
+
+select SYSDATETIME ( )
 
 delete from especialidad
 select * from especialidad
 
 select * from especialista
 delete from especialista
+
+select * from Enfermedad
+delete from Enfermedad
 
 select count(*)+1 from especialidad
 

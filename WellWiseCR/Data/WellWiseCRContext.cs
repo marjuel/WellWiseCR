@@ -21,5 +21,7 @@ namespace WellWiseCR.Data
         public DbSet<WellWiseCR.Models.Especialista>? Especialista { get; set; }
 
         public DbSet<WellWiseCR.Models.Enfermedad>? Enfermedad { get; set; }
+
+        public DbSet<WellWiseCR.Models.Diagnostico>? Diagnostico { get; set; }
     }
 }
