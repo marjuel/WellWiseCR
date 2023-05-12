@@ -145,8 +145,13 @@ values (51, 2, 'Dr. Kenzo Tenma', 'tenma@email.com', 'Alajuela', 'Grecia', 'Acti
 
 insert into Diagnostico values (1, 'PACIENTE1', '10/05/2023 19:38:15','70kg', '170cm', 'Alta', 'Saludable', 'Activo')
 
+insert into Detalle values (5, 1)
+insert into Detalle values (5, 2)
+
 delete from diagnostico
 select * from Diagnostico
+select max(iddiagnostico)+1 from diagnostico
+
 --delete from [Usuario]
 select * from [Usuario]
 
@@ -160,6 +165,13 @@ delete from especialista
 
 select * from Enfermedad
 delete from Enfermedad
+
+select * from diagnostico
+delete from diagnostico
+delete from diagnostico where idDiagnostico = 1
+
+select * from detalle
+delete from detalle where idDiagnostico = 1
 
 select count(*)+1 from especialidad
 

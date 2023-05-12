@@ -41,6 +41,20 @@
                 <input asp-for="CondicionCardiaca" class="form-control" />
                 <span asp-validation-for="CondicionCardiaca" class="text-danger"></span>
             </div>
+            <br />
+            <div class="form-group">
+                <label class="control-label">Enfermedades</label>
+                @foreach (var enfermedad in ViewBag.Enfermedades)
+                {
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="enfermedadesSeleccionadas" value="@enfermedad.IdEnfermedad" />
+                            @enfermedad.NombreEnfermedad
+                        </label>
+                    </div>
+                }
+            </div>
+            <br />
             <div class="form-group">
                 <label asp-for="Estado" class="control-label"></label>
                 <input asp-for="Estado" class="form-control" />

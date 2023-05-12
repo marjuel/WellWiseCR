@@ -9,7 +9,7 @@ namespace WellWiseCR.Data
 {
     public class WellWiseCRContext : DbContext
     {
-        public WellWiseCRContext (DbContextOptions<WellWiseCRContext> options)
+        public WellWiseCRContext(DbContextOptions<WellWiseCRContext> options)
             : base(options)
         {
         }
@@ -23,5 +23,21 @@ namespace WellWiseCR.Data
         public DbSet<WellWiseCR.Models.Enfermedad>? Enfermedad { get; set; }
 
         public DbSet<WellWiseCR.Models.Diagnostico>? Diagnostico { get; set; }
+
+        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Detalle>()
+                .HasNoKey();
+
+            modelBuilder.Entity<Detalle>()
+                .HasOne(d => d.Diagnostico)
+                .WithMany(d => d.Detalles)
+                .HasForeignKey(d => d.IdDiagnostico);
+
+            modelBuilder.Entity<Detalle>()
+                .HasOne(d => d.Enfermedad)
+                .WithMany(e => e.Detalles)
+                .HasForeignKey(d => d.IdEnfermedad);
+        }*/
     }
 }
