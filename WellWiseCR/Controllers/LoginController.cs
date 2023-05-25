@@ -50,8 +50,9 @@ namespace WellWiseCR.Controllers
 
             //Se crea una conexion con la BD y el parametro usuario (que almacena los datos digitados en frontend) se relaciona con su registro
             Conexion con = new Conexion();
+            SqlConnection sqlConnection = con.Conectar();
             string sql = "select * from [Usuario] where nombreUsuario = '" + usuario.NombreUsuario + "';";
-            SqlCommand comando = new SqlCommand(sql, con.Conectar());
+            SqlCommand comando = new SqlCommand(sql, sqlConnection);
 
             SqlDataReader dr = comando.ExecuteReader();
             //Se crea un objeto Usuario llamado dbu (para almacenar los datos extraidos de la BD)

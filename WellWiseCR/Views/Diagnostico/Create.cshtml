@@ -1,44 +1,45 @@
 ﻿@model WellWiseCR.Models.Diagnostico
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Generar diagnóstico";
 }
 
-<h1>Create</h1>
-
-<h4>Diagnostico</h4>
+<h1>Generar diagnóstico</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="NombreUsuario" value="@GlobalData.nombreGlobal" class="form-control" />
+            <input type="hidden" value="01/01/2000 00:00:00" asp-for="FechaHora" class="form-control" />
             <div class="form-group">
-                <label asp-for="NombreUsuario" class="control-label"></label>
-                <select asp-for="NombreUsuario" class ="form-control" asp-items="ViewBag.NombreUsuario"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="FechaHora" class="control-label"></label>
-                <input asp-for="FechaHora" class="form-control" />
-                <span asp-validation-for="FechaHora" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Peso" class="control-label"></label>
+                <label asp-for="Peso" class="control-label">Peso actual</label>
                 <input asp-for="Peso" class="form-control" />
                 <span asp-validation-for="Peso" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Estatura" class="control-label"></label>
+                <label asp-for="Estatura" class="control-label">Estatura actual</label>
                 <input asp-for="Estatura" class="form-control" />
                 <span asp-validation-for="Estatura" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ActividadFisica" class="control-label"></label>
-                <input asp-for="ActividadFisica" class="form-control" />
+                <label asp-for="ActividadFisica" class="control-label">Actividad física</label>
+                <select asp-for="ActividadFisica" class="form-control">
+                    <option value="" disabled selected>Seleccione su actividad física</option>
+                    <option style="color:green" value="Alta">Alta</option>
+                    <option style="color:orange" value="Moderada">Moderada</option>
+                    <option style="color:red" value="Baja">Baja</option>
+                </select>
                 <span asp-validation-for="ActividadFisica" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="CondicionCardiaca" class="control-label"></label>
-                <input asp-for="CondicionCardiaca" class="form-control" />
+                <label asp-for="CondicionCardiaca" class="control-label">Condición cardíaca</label>
+                <select asp-for="CondicionCardiaca" class="form-control">
+                    <option value="" disabled selected>Seleccione su condición cardíaca</option>
+                    <option style="color:green" value="Saludable">Saludable</option>
+                    <option style="color:orange" value="Delicada">Delicada</option>
+                    <option style="color:red" value="Grave">Grave</option>
+                </select>
                 <span asp-validation-for="CondicionCardiaca" class="text-danger"></span>
             </div>
             <br />
@@ -54,23 +55,22 @@
                     </div>
                 }
             </div>
-            <br />
+            <input type="hidden" asp-for="Estado" class="form-control" />
             <div class="form-group">
-                <label asp-for="Estado" class="control-label"></label>
-                <input asp-for="Estado" class="form-control" />
-                <span asp-validation-for="Estado" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <br />
+                <input type="submit" value="Generar diagnóstico" class="btn btn-success" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <button class="btn btn-secondary" type="button" onclick="location.href='@Url.Action("Index", "Diagnostico")'">Regresar</button>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

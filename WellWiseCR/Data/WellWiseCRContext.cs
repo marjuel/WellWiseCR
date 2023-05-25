@@ -24,20 +24,22 @@ namespace WellWiseCR.Data
 
         public DbSet<WellWiseCR.Models.Diagnostico>? Diagnostico { get; set; }
 
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder)
+        public DbSet<WellWiseCR.Models.Detalle>? Detalle { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Detalle>()
-                .HasNoKey();
+                .HasKey(x => new { x.IdDiagnostico, x.IdEnfermedad });
 
             modelBuilder.Entity<Detalle>()
-                .HasOne(d => d.Diagnostico)
-                .WithMany(d => d.Detalles)
-                .HasForeignKey(d => d.IdDiagnostico);
+            .HasOne(d => d.Diagnostico)
+            .WithMany(d => d.Detalle)
+            .HasForeignKey(d => d.IdDiagnostico);
 
             modelBuilder.Entity<Detalle>()
                 .HasOne(d => d.Enfermedad)
-                .WithMany(e => e.Detalles)
+                .WithMany(e => e.Detalle)
                 .HasForeignKey(d => d.IdEnfermedad);
-        }*/
+        }
     }
 }

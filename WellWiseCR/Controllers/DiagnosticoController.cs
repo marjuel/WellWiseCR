@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -45,6 +46,21 @@ namespace WellWiseCR.Controllers
                 return NotFound();
             }
 
+            
+            ViewBag.Detalles = _context.Detalle.Where(d => d.IdDiagnostico == id).ToList();
+
+            var vDetalles = _context.Detalle.Where(d => d.IdDiagnostico == id).ToList();
+            var idEnfermedades = vDetalles.Select(d => d.IdEnfermedad).ToList();
+            ViewBag.Enfermedades = _context.Enfermedad.Where(e => idEnfermedades.Contains(e.IdEnfermedad)).ToList();
+
+
+            var vEnfermedades = _context.Enfermedad.Where(e => idEnfermedades.Contains(e.IdEnfermedad)).ToList();
+            var idEspecialidades = vEnfermedades.Select(e => e.IdEspecialidad).ToList();
+            ViewBag.Especialidades = _context.Especialidad.Where(es => idEspecialidades.Contains(es.IdEspecialidad)).ToList();
+
+            var idEspecialistas = vEnfermedades.Select(e => e.IdEspecialidad).ToList();
+            ViewBag.Especialistas = _context.Especialista.Where(es => idEspecialidades.Contains(es.IdEspecialidad)).ToList();
+
             return View(diagnostico);
         }
 
@@ -58,7 +74,8 @@ namespace WellWiseCR.Controllers
 
         public int GenerarId()
         {
-            try {
+            try
+            {
                 int nuevoId = 0;
                 Conexion con = new Conexion();
                 //string sql = "select count(*)+1 from diagnostico";
@@ -68,7 +85,8 @@ namespace WellWiseCR.Controllers
                 SqlDataReader dr = comando.ExecuteReader();
 
                 Console.WriteLine("JUSTO ANTES DE Entrando al if para null");
-                if (dr.Read() != null) {
+                if (dr.Read() != null)
+                {
                     Console.WriteLine("Entrando al if para null");
                     nuevoId = dr.GetInt32(0);
                 }
@@ -78,11 +96,12 @@ namespace WellWiseCR.Controllers
                 con.Desconectar();
                 return nuevoId;
             }
-            catch (SqlNullValueException ex) {
+            catch (SqlNullValueException ex)
+            {
                 Console.WriteLine("Entrando al excepton");
                 return 1;
             }
-            
+
         }//fin del metodo generar id
 
         // POST: Diagnostico/Create
@@ -90,39 +109,27 @@ namespace WellWiseCR.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("IdDiagnostico,NombreUsuario,FechaHora,Peso,Estatura,ActividadFisica,CondicionCardiaca,Estado")] Diagnostico diagnostico, int[] enfermedadesSeleccionadas)
+        public async Task<IActionResult> Create([Bind("IdDiagnostico,NombreUsuario,FechaHora,Peso,Estatura,ActividadFisica,CondicionCardiaca,Estado")] Diagnostico diagnostico,
+            int[] enfermedadesSeleccionadas)
         {
-            try
+            diagnostico.IdDiagnostico = GenerarId();
+            diagnostico.FechaHora = DateTime.Now;
+            diagnostico.Estado = "Activo";
+
+            _context.Add(diagnostico);
+
+            Detalle detalle = new Detalle();
+            foreach (int idEnfermedad in enfermedadesSeleccionadas)
             {
-                Console.WriteLine("Entra al try de create");
-                Conexion con = new Conexion();
-                diagnostico.IdDiagnostico = GenerarId();
-                diagnostico.Estado = "Activo";
-                string sql = "insert into [Diagnostico] values('" + diagnostico.IdDiagnostico + "', '" + diagnostico.NombreUsuario + "', '" + diagnostico.FechaHora + "', '"
-                    + diagnostico.Peso + "', '" + diagnostico.Estatura + "', '" + diagnostico.ActividadFisica + "', '"
-                    + diagnostico.CondicionCardiaca + "', '" + diagnostico.Estado + "')";
-                SqlCommand comando = new SqlCommand(sql, con.Conectar());
-                int registrosAfectados = comando.ExecuteNonQuery();
-                Console.WriteLine("Ejecuta el query de create diagnostico");
-                con.Desconectar();
-
-                foreach (int idEnfermedad in enfermedadesSeleccionadas)
-                {
-                    Console.WriteLine("Entra al foreach de create");
-                    string sql2 = "insert into [Detalle] values('" + diagnostico.IdDiagnostico + "', '" + idEnfermedad + "')";
-
-                    SqlCommand comando2 = new SqlCommand(sql2, con.Conectar());
-                    int registrosAfectados2 = comando2.ExecuteNonQuery();
-                    con.Desconectar();
-                }
-
-                return RedirectToAction(nameof(Index));
+                
+                detalle.IdDiagnostico = diagnostico.IdDiagnostico;
+                detalle.IdEnfermedad = idEnfermedad;
+                _context.Detalle.Add(detalle);
             }
-            catch (Exception ex)
-            {
-                throw ex;
-                return NotFound();
-            }
+
+            await _context.SaveChangesAsync();
+
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Diagnostico/Edit/5

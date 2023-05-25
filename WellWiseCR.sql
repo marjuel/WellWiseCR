@@ -170,7 +170,7 @@ select * from diagnostico
 delete from diagnostico
 delete from diagnostico where idDiagnostico = 1
 
-select * from detalle
+select * from detalle order by IdDiagnostico
 delete from detalle where idDiagnostico = 1
 
 select count(*)+1 from especialidad

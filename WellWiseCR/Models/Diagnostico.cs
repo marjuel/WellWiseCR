@@ -39,5 +39,7 @@ namespace WellWiseCR.Models
         public string Estado { get; set; }
 
         public Usuario Usuario { get; set; }
+
+        public ICollection<Detalle> Detalle { get; set; }
     }
 }
