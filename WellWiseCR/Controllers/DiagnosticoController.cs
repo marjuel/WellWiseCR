@@ -125,9 +125,10 @@ namespace WellWiseCR.Controllers
                 detalle.IdDiagnostico = diagnostico.IdDiagnostico;
                 detalle.IdEnfermedad = idEnfermedad;
                 _context.Detalle.Add(detalle);
+                await _context.SaveChangesAsync();
             }
 
-            await _context.SaveChangesAsync();
+            //await _context.SaveChangesAsync();
 
             return RedirectToAction(nameof(Index));
         }

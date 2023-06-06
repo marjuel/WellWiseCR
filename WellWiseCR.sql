@@ -122,10 +122,10 @@ go
 
 ---------------------------------------------------------------------------
 insert into [Usuario]
-values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')
+values ('MARJUELADMIN','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marcel Campos', '26/11/2001', 'Alajuela', 'Grecia','Administrador','Activo')
 
 insert into [Usuario]
-values ('Paciente1','11111111','11111111', 'marcel.fabri21@gmail.com', 'Paciente Uno', '30/01/1980', 'Puntarenas', 'Esparza','Paciente','Activo')
+values ('PACIENTE1','11111111','11111111', 'marcel.fabri21@gmail.com', 'Paciente Uno', '30/01/1980', 'Puntarenas', 'Esparza','Paciente','Activo')
 
 insert into [Usuario]
 values ('test1','11111111','11111111', 'test1@email.com', 'Test Uno', '30/01/1980', 'Alajuela', 'Grecia','Paciente','Activo')

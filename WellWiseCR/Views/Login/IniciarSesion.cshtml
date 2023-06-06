@@ -63,8 +63,10 @@
             <br />
             <br />
             <p>¿No tiene una cuenta?</p>
-            <button class="btn btn-success" type="submit">Registrarse</button>
+            @*<button class="btn btn-success" type="submit">Registrarse</button>*@
+            <button class="btn btn-success" type="button" onclick="location.href='@Url.Action("RegistrarUsuario", "Login")'">Registrarse</button>
         </form>
+
 
     </div>
 
