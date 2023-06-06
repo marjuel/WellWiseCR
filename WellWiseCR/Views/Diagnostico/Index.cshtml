@@ -45,15 +45,15 @@
                         @Html.DisplayFor(modelItem => item.Estado)
                     </td>
                     <td>
-                        <a class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdDiagnostico">Modificar</a>
+                        <a hidden class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdDiagnostico">Modificar</a>
                         <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdDiagnostico">Detalles</a>
                         @if (item.Estado.Equals("Activo"))
                         {
-                            <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdDiagnostico">Desactivar</a>
+                            <a hidden class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdDiagnostico">Desactivar</a>
                         }
                         else
                         {
-                            <a class="btn btn-success" asp-action="Delete" style="width:20%" asp-route-id="@item.IdDiagnostico">Reactivar</a>
+                            <a hidden class="btn btn-success" asp-action="Delete" style="width:20%" asp-route-id="@item.IdDiagnostico">Reactivar</a>
                         }
                     </td>
                 </tr>

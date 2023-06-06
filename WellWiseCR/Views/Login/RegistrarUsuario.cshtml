@@ -52,22 +52,10 @@
                 <span asp-validation-for="Canton" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Rol" class="control-label">Rol</label>
-                <select asp-for="Rol" class="form-control">
-                    <option disabled selected class="text-muted">Seleccione su rol</option>
-                    <option>Paciente</option>
-                    <option disabled>Administrador</option>
-                </select>
-                <span asp-validation-for="Rol" class="text-danger"></span>
+                <input hidden asp-for="Rol" class="form-control" />
             </div>
             <div class="form-group">
-                <label class="control-label">Estado</label>
-                <select asp-for="Estado" class="form-control">
-                    <option disabled selected class="text-muted">Seleccione su estado</option>
-                    <option>Activo</option>
-                    <option disabled>Inactivo</option>
-                </select>
-                <span asp-validation-for="Estado" class="text-danger"></span>
+                <input hidden asp-for="Estado" class="form-control" />
             </div>
             <div class="form-group">
                 <br />

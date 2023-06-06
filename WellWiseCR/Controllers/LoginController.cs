@@ -261,6 +261,9 @@ namespace WellWiseCR.Controllers
                 dbu.NombreUsuario = dr["nombreUsuario"].ToString().ToUpper();
             con.Desconectar();
 
+            
+
+
 
             try { 
 
@@ -272,6 +275,13 @@ namespace WellWiseCR.Controllers
                 //    return View();
                 //}
 
+                Console.WriteLine("8\n8\n8\n8\n8\n8\n8\n8\n8\n");
+                Console.WriteLine("Entro a modelstate isvalid");
+
+                usuario.NombreUsuario = usuario.NombreUsuario.ToUpper();
+                usuario.Rol = "Paciente";
+                usuario.Estado = "Activo";
+                
                 dbcontext.Add(usuario);
                 await dbcontext.SaveChangesAsync();
                 return RedirectToAction("IniciarSesion", "Login");
@@ -280,6 +290,8 @@ namespace WellWiseCR.Controllers
             }
             catch (Exception ex)
             {
+                Console.WriteLine("8\n8\n8\n8\n8\n8\n8\n8\n8\n");
+                Console.WriteLine(ex.ToString());
                 ViewData["ValidateMessage3"] = "El nombre de usuario ya se encuentra registrado. Por favor intente con uno nuevo.";
             }
 

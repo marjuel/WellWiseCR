@@ -28,7 +28,7 @@ create table [Usuario](
 go
 --Trigger para transformar los nombres de usuario
 --que se registren en mayuscula
-CREATE TRIGGER ToUpperCase
+/*CREATE TRIGGER ToUpperCase
         ON [Usuario]
         after INSERT
 AS
@@ -36,7 +36,7 @@ BEGIN
     UPDATE  [Usuario]
     SET     NombreUsuario = UPPER(NombreUsuario)
     WHERE   NombreUsuario IN (SELECT NombreUsuario FROM inserted)
-END
+END*/
 
 
 if exists (select name from dbo.sysobjects where name='Especialidad')
@@ -126,6 +126,13 @@ values ('marjueladmin','11111111','11111111', 'marcel.fabri21@gmail.com', 'Marce
 
 insert into [Usuario]
 values ('Paciente1','11111111','11111111', 'marcel.fabri21@gmail.com', 'Paciente Uno', '30/01/1980', 'Puntarenas', 'Esparza','Paciente','Activo')
+
+insert into [Usuario]
+values ('test1','11111111','11111111', 'test1@email.com', 'Test Uno', '30/01/1980', 'Alajuela', 'Grecia','Paciente','Activo')
+
+delete from usuario where NombreUsuario = 'test1'
+
+select * from usuario
 
 insert into [Especialidad]
 values (1, 'Cardiología', 'Se especializa en las enfermedades relacionadas con el corazón', 'Activo')
