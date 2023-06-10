@@ -80,12 +80,6 @@
             <hr />
             <h4 style="font-weight: bold">@i.NombreEnfermedad</h4>
             <dt class="col-sm-2">
-                Enfermedad a consultar
-            </dt>
-            <dd class="col-sm-10">
-                @i.NombreEnfermedad
-            </dd>
-            <dt class="col-sm-2">
                 Especialidad
             </dt>
             <dd class="col-sm-10">
@@ -113,10 +107,15 @@
             <dd class="col-sm-10">
                 @i.Recomendaciones
             </dd>
+
+            bool isEspecialista = false;
+
             @foreach (var j in ViewBag.Especialistas)
             {
-                if (j.IdEspecialidad == i.IdEspecialidad)
+                if (j.IdEspecialidad == i.IdEspecialidad && j.Provincia == Model.Usuario.Provincia && j.Canton == Model.Usuario.Canton)
                 {
+                isEspecialista = true;
+                    <p style="font-weight: bold">Se recomienda contactar al siguiente especialista en su cantón.</p>
                 <dt class="col-sm-2">
                     Nombre del especialista
                 </dt>
@@ -126,35 +125,47 @@
                 <dt class="col-sm-2">
                     Correo electrónico
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" style="color: blue; text-decoration: underline;">
                     @j.Email
                 </dd>
                 <dt class="col-sm-2">
-                    Provincia
+                    Dirección del especialista
                 </dt>
                 <dd class="col-sm-10">
-                    @j.Provincia
-                </dd>
-                <dt class="col-sm-2">
-                    Cantón
-                </dt>
-                <dd class="col-sm-10">
-                    @j.Canton
+                    @j.Provincia - @j.Canton
                 </dd>
                 }
+                else if (j.IdEspecialidad == i.IdEspecialidad && j.Provincia == Model.Usuario.Provincia && j.Canton != Model.Usuario.Canton)
+                {
+                    <p style="font-weight: bold">Un especialista disponible en otro cantón de su provincia es el siguiente.</p>
+                    isEspecialista = true;
+                    <dt class="col-sm-2">
+                        Nombre del especialista
+                    </dt>
+                    <dd class="col-sm-10">
+                        @j.NombreCompleto
+                    </dd>
+                    <dt class="col-sm-2">
+                        Correo electrónico
+                    </dt>
+                    <dd class="col-sm-10" style="color: blue; text-decoration: underline;">
+                        @j.Email
+                    </dd>
+                    <dt class="col-sm-2">
+                        Dirección del especialista
+                    </dt>
+                    <dd class="col-sm-10">
+                        @j.Provincia - @j.Canton
+                    </dd>
+                }
+            }
+            @if (!isEspecialista)
+            {
+                <p style="font-weight: bold">No hay especialistas recomendados para esta enfermedad por el momento.</p>
             }
         }
-
-        <hr />
-        <dt class="col-sm-2">
-            Estado
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Estado)
-        </dd>
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.IdDiagnostico">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a class="btn btn-secondary" asp-action="Index">Regresar</a>
 </div>
