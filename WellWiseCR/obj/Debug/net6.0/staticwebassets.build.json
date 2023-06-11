@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "/A3VWz98xTOYCydG70EYtiCfNGIuUMHJmDAlG0zBFWM=",
+  "Hash": "Joo47WJjCGp1KuyWy81ghnnFB3Sw7mJD51CvLehJ+lM=",
   "Source": "WellWiseCR",
   "BasePath": "_content/WellWiseCR",
   "Mode": "Default",
@@ -51,12 +51,12 @@
       "OriginalItemSpec": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\WellWiseCR.bundle.scp.css"
     },
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\img1.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\img1.webp",
       "SourceId": "WellWiseCR",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\",
       "BasePath": "_content/WellWiseCR",
-      "RelativePath": "css/img1.jpg",
+      "RelativePath": "css/img1.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -65,15 +65,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\img1.jpg"
+      "OriginalItemSpec": "wwwroot\\css\\img1.webp"
     },
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\img2.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\img2.webp",
       "SourceId": "WellWiseCR",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\",
       "BasePath": "_content/WellWiseCR",
-      "RelativePath": "css/img2.jpg",
+      "RelativePath": "css/img2.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -82,15 +82,15 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\img2.jpg"
+      "OriginalItemSpec": "wwwroot\\css\\img2.webp"
     },
     {
-      "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\img3.jpg",
+      "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\img3.webp",
       "SourceId": "WellWiseCR",
       "SourceType": "Discovered",
       "ContentRoot": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\",
       "BasePath": "_content/WellWiseCR",
-      "RelativePath": "css/img3.jpg",
+      "RelativePath": "css/img3.webp",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -99,7 +99,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\img3.jpg"
+      "OriginalItemSpec": "wwwroot\\css\\img3.webp"
     },
     {
       "Identity": "C:\\Users\\Admin\\Desktop\\WellWiseCR\\WellWiseCR\\wwwroot\\css\\site.css",
