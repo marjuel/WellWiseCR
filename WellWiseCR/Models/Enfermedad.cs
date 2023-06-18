@@ -13,19 +13,19 @@ namespace WellWiseCR.Models
         [ForeignKey("Especialidad")]
         public int IdEspecialidad { get; set; }
 
-        [Required(ErrorMessage = "El campo nombre de enfermedad es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo nombre de enfermedad es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string NombreEnfermedad { get; set; }
 
-        [Required(ErrorMessage = "El campo síntomas es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo síntomas es obligatorio.")]
         [MaxLength(1000, ErrorMessage = "Puede ingresar un máximo de 1000 caracteres.")]
         public string Sintomas { get; set; }
 
-        [Required(ErrorMessage = "El campo nivel de alerta es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo nivel de alerta es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string NivelAlerta { get; set; }
 
-        [Required(ErrorMessage = "El campo recomendaciones es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo recomendaciones es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 1000 caracteres.")]
         public string Recomendaciones { get; set; }
 

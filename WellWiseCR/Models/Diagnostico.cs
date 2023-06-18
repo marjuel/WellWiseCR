@@ -18,19 +18,21 @@ namespace WellWiseCR.Models
         [DataType(DataType.DateTime)]
         public DateTime FechaHora { get; set; }
 
-        [Required(ErrorMessage = "El campo peso es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo peso es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
+        [Range(0, int.MaxValue, ErrorMessage = "El peso debe ser un valor numérico.")]
         public string Peso { get; set; }
 
-        [Required(ErrorMessage = "El campo estatura es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo estatura es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
+        [Range(0, int.MaxValue, ErrorMessage = "La estatura debe ser un valor numérico.")]
         public string Estatura { get; set; }
 
-        [Required(ErrorMessage = "El campo actividad física es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo actividad física es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string ActividadFisica { get; set; }
 
-        [Required(ErrorMessage = "El campo condición cardíaca es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo condición cardíaca es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string CondicionCardiaca { get; set; }
 

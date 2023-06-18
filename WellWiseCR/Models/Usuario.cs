@@ -5,38 +5,39 @@ namespace WellWiseCR.Models
 {
     public class Usuario
     {
-        [Required (ErrorMessage = "El campo nombre de usuario es obligatorio.")]
+        [Required (AllowEmptyStrings = false, ErrorMessage = "El campo nombre de usuario es obligatorio.")]
         [Key]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string NombreUsuario { get; set; }
 
-        [Required(ErrorMessage = "El campo contraseña es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo contraseña es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         [MinLength(8, ErrorMessage = "Debe ingresar un mínimo de 8 caracteres, incluyendo al menos una mayúscula, una minúscula y un número.")]
         public string Password { get; set; }
 
-        [Required(ErrorMessage = "El campo confirmacion de contraseña es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo confirmacion de contraseña es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         [Compare("Password", ErrorMessage = "La confirmación de contraseña no coincide.")]
         public string ConfirmacionPassword { get; set; }
 
-        [Required(ErrorMessage = "El campo correo electrónico es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo correo electrónico es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
+        [EmailAddress(ErrorMessage = "Dirección de correo electrónico inválida.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "El campo nombre completo es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo nombre completo es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string NombreCompleto { get; set; }
 
-        [Required(ErrorMessage = "El campo fecha de nacimiento es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo fecha de nacimiento es obligatorio.")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/mm/yyyy}")]
         public DateTime FechaNacimiento { get; set; }
 
-        [Required(ErrorMessage = "El campo provincia es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo provincia es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string Provincia { get; set; }
 
-        [Required(ErrorMessage = "El campo cantón es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo cantón es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string Canton { get; set; }
 

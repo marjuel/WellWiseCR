@@ -13,19 +13,20 @@ namespace WellWiseCR.Models
         [ForeignKey("Especialidad")]
         public int IdEspecialidad { get; set; }
 
-        [Required(ErrorMessage = "El campo correo electrónico es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo correo electrónico es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
+        [EmailAddress(ErrorMessage = "Dirección de correo electrónico inválida.")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "El campo nombre completo es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo nombre completo es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string NombreCompleto { get; set; }
 
-        [Required(ErrorMessage = "El campo provincia es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo provincia es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string Provincia { get; set; }
 
-        [Required(ErrorMessage = "El campo cantón es obligatorio.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "El campo cantón es obligatorio.")]
         [MaxLength(150, ErrorMessage = "Puede ingresar un máximo de 150 caracteres.")]
         public string Canton { get; set; }
 

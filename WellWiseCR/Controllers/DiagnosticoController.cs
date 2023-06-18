@@ -20,6 +20,7 @@ namespace WellWiseCR.Controllers
 
         public DiagnosticoController(WellWiseCRContext context)
         {
+            ViewData["ValidateMessageDiag"] = "";
             _context = context;
         }
 
@@ -116,21 +117,17 @@ namespace WellWiseCR.Controllers
             diagnostico.FechaHora = DateTime.Now;
             diagnostico.Estado = "Activo";
 
-            _context.Add(diagnostico);
+                _context.Add(diagnostico);
 
-            Detalle detalle = new Detalle();
-            foreach (int idEnfermedad in enfermedadesSeleccionadas)
-            {
-                
-                detalle.IdDiagnostico = diagnostico.IdDiagnostico;
-                detalle.IdEnfermedad = idEnfermedad;
-                _context.Detalle.Add(detalle);
-                await _context.SaveChangesAsync();
-            }
-
-            //await _context.SaveChangesAsync();
-
-            return RedirectToAction(nameof(Index));
+                Detalle detalle = new Detalle();
+                foreach (int idEnfermedad in enfermedadesSeleccionadas)
+                {
+                    detalle.IdDiagnostico = diagnostico.IdDiagnostico;
+                    detalle.IdEnfermedad = idEnfermedad;
+                    _context.Detalle.Add(detalle);
+                    await _context.SaveChangesAsync();
+                }
+                return RedirectToAction(nameof(Index));
         }
 
         // GET: Diagnostico/Edit/5
