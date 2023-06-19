@@ -47,6 +47,7 @@
                     <td>
                         <a hidden class="btn btn-success" asp-action="Edit" asp-route-id="@item.IdDiagnostico">Modificar</a>
                         <a class="btn btn-primary" asp-action="Details" asp-route-id="@item.IdDiagnostico">Detalles</a>
+                        <button class="btn btn-secondary" title="Opción deshabilitada temporalmente.">Enviar correo</button>
                         @if (item.Estado.Equals("Activo"))
                         {
                             <a hidden class="btn btn-danger" asp-action="Delete" asp-route-id="@item.IdDiagnostico">Desactivar</a>
