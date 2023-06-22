@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#fondito {
+    background: rgb(0,13,168);
+    background: linear-gradient(90deg, rgba(0,13,168,0.500437675070028) 0%, rgba(36,126,200,0.49763655462184875) 30%, rgba(84,255,234,0.49763655462184875) 100%);
+}
+
+#piepagina {
+    background-color:aliceblue;
+}
